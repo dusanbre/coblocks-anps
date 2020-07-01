@@ -128,5 +128,8 @@
 		"*.js": [
 			"jest --config .dev/tests/jest/jest.config.js --silent --findRelatedTests"
 		]
+	},
+	"dependencies": {
+		"yarn": "^1.22.4"
 	}
 }
