@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Server-side rendering of the `post-carousel` block.
  *
@@ -12,7 +13,8 @@
  *
  * @return string Returns the block content.
  */
-function coblocks_render_post_carousel_block( $attributes ) {
+function coblocks_render_post_carousel_block($attributes)
+{
 
 	global $post;
 
@@ -22,63 +24,55 @@ function coblocks_render_post_carousel_block( $attributes ) {
 		'order'            => $attributes['order'],
 		'orderby'          => $attributes['orderBy'],
 		'suppress_filters' => false,
-		'post__not_in'     => array( $post->ID ),
+		'post__not_in'     => array($post->ID),
 	);
 
-	if ( isset( $attributes['categories'] ) ) {
+	if (isset($attributes['categories'])) {
 
 		$args['category'] = $attributes['categories'];
-
 	}
 
-	if ( 'external' === $attributes['postFeedType'] && $attributes['externalRssUrl'] ) {
+	if ('external' === $attributes['postFeedType'] && $attributes['externalRssUrl']) {
 
-		$recent_posts = fetch_feed( $attributes['externalRssUrl'] );
+		$recent_posts = fetch_feed($attributes['externalRssUrl']);
 
-		if ( is_wp_error( $recent_posts ) ) {
+		if (is_wp_error($recent_posts)) {
 
-			return '<div class="components-placeholder"><div class="notice notice-error"><strong>' . __( 'RSS error:', 'coblocks' ) . '</strong> ' . $recent_posts->get_error_message() . '</div></div>';
-
+			return '<div class="components-placeholder"><div class="notice notice-error"><strong>' . __('RSS error:', 'coblocks') . '</strong> ' . $recent_posts->get_error_message() . '</div></div>';
 		}
 
-		if ( ! $recent_posts->get_item_quantity() ) {
+		if (!$recent_posts->get_item_quantity()) {
 
 			// PHP 5.2 compatibility. See: http://simplepie.org/wiki/faq/i_m_getting_memory_leaks.
 			$recent_posts->__destruct();
 
-			unset( $recent_posts );
+			unset($recent_posts);
 
-			return '<div class="components-placeholder"><div class="notice notice-error">' . __( 'An error has occurred, which probably means the feed is down. Try again later.', 'coblocks' ) . '</div></div>';
-
+			return '<div class="components-placeholder"><div class="notice notice-error">' . __('An error has occurred, which probably means the feed is down. Try again later.', 'coblocks') . '</div></div>';
 		}
 
-		$recent_posts    = $recent_posts->get_items( 0, $attributes['postsToShow'] );
-		$formatted_posts = coblocks_get_rss_post_carousel_info( $recent_posts );
-
+		$recent_posts    = $recent_posts->get_items(0, $attributes['postsToShow']);
+		$formatted_posts = coblocks_get_rss_post_carousel_info($recent_posts);
 	} else {
 
-		$recent_posts    = get_posts( $args );
-		$formatted_posts = coblocks_get_post_carousel_info( $recent_posts );
-
+		$recent_posts    = get_posts($args);
+		$formatted_posts = coblocks_get_post_carousel_info($recent_posts);
 	}
 
 	$block_layout = null;
 
-	if ( isset( $attributes['className'] ) && strpos( $attributes['className'], 'is-style-horizontal' ) !== false ) {
+	if (isset($attributes['className']) && strpos($attributes['className'], 'is-style-horizontal') !== false) {
 
 		$block_layout = 'horizontal';
-
-	} elseif ( isset( $attributes['className'] ) && strpos( $attributes['className'], 'is-style-stacked' ) !== false ) {
+	} elseif (isset($attributes['className']) && strpos($attributes['className'], 'is-style-stacked') !== false) {
 
 		$block_layout = 'stacked';
-
 	} else {
 
 		$block_layout = 'carousel';
-
 	}
 
-	return coblocks_post_carousel( $formatted_posts, $attributes );
+	return coblocks_post_carousel($formatted_posts, $attributes);
 }
 
 /**
@@ -89,25 +83,24 @@ function coblocks_render_post_carousel_block( $attributes ) {
  *
  * @return string Returns the block content for the carousel.
  */
-function coblocks_post_carousel( $posts, $attributes ) {
+function coblocks_post_carousel($posts, $attributes)
+{
 
 	$class = 'wp-block-coblocks-post-carousel';
 
-	if ( isset( $attributes['className'] ) ) {
+	if (isset($attributes['className'])) {
 
 		$class .= ' ' . $attributes['className'];
-
 	}
 
-	if ( isset( $attributes['align'] ) ) {
+	if (isset($attributes['align'])) {
 
 		$class .= ' align' . $attributes['align'];
-
 	}
 
 	$block_content = sprintf(
 		'<div class="%1$s"><div class="coblocks-slick pb-8" data-slick="%2$s">',
-		esc_attr( $class ),
+		esc_attr($class),
 		esc_attr(
 			wp_json_encode(
 				/**
@@ -152,69 +145,64 @@ function coblocks_post_carousel( $posts, $attributes ) {
 
 	$list_items_markup = '';
 
-	foreach ( $posts as $post ) {
+	foreach ($posts as $post) {
 
 		$list_items_markup .= '<div class="wp-block-coblocks-post-carousel__item">';
 
-		if ( null !== $post['thumbnailURL'] && $post['thumbnailURL'] ) {
+		if (null !== $post['thumbnailURL'] && $post['thumbnailURL']) {
 
 			$list_items_markup .= sprintf(
 				'<div class="wp-block-coblocks-post-carousel__image"><a href="%1$s" class="bg-cover bg-center-center" style="background-image:url(%2$s)"></a></div>',
-				esc_url( $post['postLink'] ),
-				esc_url( $post['thumbnailURL'] )
+				esc_url($post['postLink']),
+				esc_url($post['thumbnailURL'])
 			);
 		}
 
 		$list_items_markup .= '<div class="wp-block-coblocks-post-carousel__content">';
 
-		if ( isset( $attributes['displayPostDate'] ) && $attributes['displayPostDate'] ) {
+		if (isset($attributes['displayPostDate']) && $attributes['displayPostDate']) {
 
 			$list_items_markup .= sprintf(
 				'<time datetime="%1$s" class="wp-block-coblocks-post-carousel__date">%2$s</time>',
 				$post['date'],
 				$post['dateReadable']
 			);
-
 		}
 
 		$title = $post['title'];
 
-		if ( ! $title ) {
+		if (!$title) {
 
-			$title = _x( '(no title)', 'placeholder when a post has no title', 'coblocks' );
-
+			$title = _x('(no title)', 'placeholder when a post has no title', 'coblocks');
 		}
 
 		$list_items_markup .= sprintf(
 			'<a href="%1$s" alt="%2$s">%2$s</a>',
-			esc_url( $post['postLink'] ),
-			esc_html( $title )
+			esc_url($post['postLink']),
+			esc_html($title)
 		);
 
-		if ( isset( $attributes['displayPostContent'] ) && $attributes['displayPostContent'] ) {
+		if (isset($attributes['displayPostContent']) && $attributes['displayPostContent']) {
 
 			$post_excerpt    = $post['postExcerpt'];
-			$trimmed_excerpt = esc_html( wp_trim_words( $post_excerpt, $attributes['excerptLength'], ' &hellip; ' ) );
+			$trimmed_excerpt = esc_html(wp_trim_words($post_excerpt, $attributes['excerptLength'], ' &hellip; '));
 
 			$list_items_markup .= sprintf(
 				'<div class="wp-block-coblocks-post-carousel__excerpt">%1$s</div>',
 				$trimmed_excerpt
 			);
-
 		}
 
-		if ( isset( $attributes['displayPostLink'] ) && $attributes['displayPostLink'] ) {
+		if (isset($attributes['displayPostLink']) && $attributes['displayPostLink']) {
 
 			$list_items_markup .= sprintf(
 				'<a href="%1$s" class="wp-block-coblocks-post-carousel__more-link">%2$s</a>',
-				esc_url( $post['postLink'] ),
-				esc_html( $attributes['postLink'] )
+				esc_url($post['postLink']),
+				esc_html($attributes['postLink'])
 			);
-
 		}
 
 		$list_items_markup .= '</div></div>';
-
 	}
 
 	$block_content .= $list_items_markup;
@@ -222,7 +210,6 @@ function coblocks_post_carousel( $posts, $attributes ) {
 	$block_content .= '</div>';
 
 	return $block_content;
-
 }
 
 /**
@@ -232,36 +219,34 @@ function coblocks_post_carousel( $posts, $attributes ) {
  *
  * @return array Returns posts.
  */
-function coblocks_get_post_carousel_info( $posts ) {
+function coblocks_get_post_carousel_info($posts)
+{
 
 	$formatted_posts = array();
 
-	foreach ( $posts as $post ) {
+	foreach ($posts as $post) {
 
 		$formatted_post = null;
 
-		$formatted_post['thumbnailURL'] = get_the_post_thumbnail_url( $post, 'full' );
-		$formatted_post['date']         = esc_attr( get_the_date( 'c', $post ) );
-		$formatted_post['dateReadable'] = esc_html( get_the_date( '', $post ) );
-		$formatted_post['title']        = get_the_title( $post );
-		$formatted_post['postLink']     = esc_url( get_permalink( $post ) );
+		$formatted_post['thumbnailURL'] = get_the_post_thumbnail_url($post, 'full');
+		$formatted_post['date']         = esc_attr(get_the_date('c', $post));
+		$formatted_post['dateReadable'] = esc_html(get_the_date('', $post));
+		$formatted_post['title']        = get_the_title($post);
+		$formatted_post['postLink']     = esc_url(get_permalink($post));
 
 		$post_excerpt = $post->post_excerpt;
 
-		if ( ! ( $post_excerpt ) ) {
+		if (!($post_excerpt)) {
 
 			$post_excerpt = $post->post_content;
-
 		}
 
 		$formatted_post['postExcerpt'] = $post_excerpt;
 
 		$formatted_posts[] = $formatted_post;
-
 	}
 
 	return $formatted_posts;
-
 }
 
 /**
@@ -271,65 +256,64 @@ function coblocks_get_post_carousel_info( $posts ) {
  *
  * @return array returns posts.
  */
-function coblocks_get_rss_post_carousel_info( $posts ) {
+function coblocks_get_rss_post_carousel_info($posts)
+{
 
 	$formatted_posts = array();
 
-	foreach ( $posts as $post ) {
+	foreach ($posts as $post) {
 
-		$title = esc_html( trim( wp_strip_all_tags( $post->get_title() ) ) );
+		$title = esc_html(trim(wp_strip_all_tags($post->get_title())));
 
 		$formatted_post = null;
 
-		$formatted_post['date']         = date_i18n( get_option( 'c' ), $post->get_date( 'U' ) );
-		$formatted_post['dateReadable'] = date_i18n( get_option( 'date_format' ), $post->get_date( 'U' ) );
+		$formatted_post['date']         = date_i18n(get_option('c'), $post->get_date('U'));
+		$formatted_post['dateReadable'] = date_i18n(get_option('date_format'), $post->get_date('U'));
 		$formatted_post['title']        = $title;
-		$formatted_post['postLink']     = esc_url( $post->get_link() );
-		$formatted_post['postExcerpt']  = html_entity_decode( $post->get_description(), ENT_QUOTES, get_option( 'blog_charset' ) );
+		$formatted_post['postLink']     = esc_url($post->get_link());
+		$formatted_post['postExcerpt']  = html_entity_decode($post->get_description(), ENT_QUOTES, get_option('blog_charset'));
 
-		$output = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->get_content(), $matches );
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->get_content(), $matches);
 
 		$first_img = false;
 
-		if ( $matches && ! empty( $matches[1] ) ) {
+		if ($matches && !empty($matches[1])) {
 
 			$first_img = $matches[1][0];
-
 		}
 
 		$formatted_post['thumbnailURL'] = $first_img;
 
 		$formatted_posts[] = $formatted_post;
-
 	}
 
 	return $formatted_posts;
-
 }
 
 /**
  * Registers the `post-carousel` block on server.
  */
-function coblocks_register_post_carousel_block() {
+function coblocks_register_post_carousel_block()
+{
 	// Return early if this function does not exist.
-	if ( ! function_exists( 'register_block_type' ) ) {
+	if (!function_exists('register_block_type')) {
 		return;
 	}
 
-	$dir = CoBlocks()->asset_source( 'js' );
+	$dir = AnpsBlocks()->asset_source('js');
 
 	wp_register_script(
 		'coblocks-slick-initializer',
 		$dir . 'coblocks-slick-initializer.js',
-		array( 'jquery' ),
-		COBLOCKS_VERSION,
+		array('jquery'),
+		ANPSBLOCKS_VERSION,
 		true
 	);
 
 	// Load attributes from block.json.
 	ob_start();
-	include COBLOCKS_PLUGIN_DIR . 'src/blocks/post-carousel/block.json';
-	$metadata = json_decode( ob_get_clean(), true );
+	include ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/post-carousel/block.json';
+	$metadata = json_decode(ob_get_clean(), true);
 
 	register_block_type(
 		'coblocks/post-carousel',
@@ -340,4 +324,4 @@ function coblocks_register_post_carousel_block() {
 		)
 	);
 }
-add_action( 'init', 'coblocks_register_post_carousel_block' );
+add_action('init', 'coblocks_register_post_carousel_block');

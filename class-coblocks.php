@@ -1,65 +1,58 @@
 <?php
+
 /**
- * Plugin Name: CoBlocks
- * Description: CoBlocks is a suite of professional <strong>page building content blocks</strong> for the WordPress Gutenberg block editor. Our blocks are hyper-focused on empowering makers to build beautifully rich pages in WordPress.
- * Author: GoDaddy
- * Author URI: https://www.godaddy.com
- * Version: 2.0.2
- * Text Domain: coblocks
+ * Plugin Name: Anps Gutenberg Blocks
+ * Description: Anps gutenberg blocks plugin
+ * Author: AnpsThemes
+ * Author URI: https://www.anpsthemes.com
+ * Version: 1.0.0
+ * Text Domain: anps
  * Domain Path: /languages
  * Tested up to: 5.4
- *
- * CoBlocks is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * any later version.
- *
- * You should have received a copy of the GNU General Public License
- * along with CoBlocks. If not, see <http://www.gnu.org/licenses/>.
- *
- * @package CoBlocks
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
-define( 'COBLOCKS_VERSION', '2.0.2' );
-define( 'COBLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'COBLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'COBLOCKS_PLUGIN_FILE', __FILE__ );
-define( 'COBLOCKS_PLUGIN_BASE', plugin_basename( __FILE__ ) );
-define( 'COBLOCKS_REVIEW_URL', 'https://wordpress.org/support/plugin/coblocks/reviews/?filter=5' );
+define('ANPSBLOCKS_VERSION', '1.0.0');
+define('ANPSBLOCKS_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('ANPSBLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('ANPSBLOCKS_PLUGIN_FILE', __FILE__);
+define('ANPSBLOCKS_PLUGIN_BASE', plugin_basename(__FILE__));
+define('ANPSBLOCKS_REVIEW_URL', 'https://wordpress.org/support/plugin/anpsblocks/reviews/?filter=5');
 
-if ( ! class_exists( 'CoBlocks' ) ) :
+if (!class_exists('AnpsBlocks')) :
 	/**
-	 * Main CoBlocks Class.
+	 * Main AnpsBlocks Class.
 	 *
 	 * @since 1.0.0
 	 */
-	final class CoBlocks {
+	final class AnpsBlocks
+	{
 		/**
 		 * This plugin's instance.
 		 *
-		 * @var CoBlocks
+		 * @var AnpsBlocks
 		 * @since 1.0.0
 		 */
 		private static $instance;
 
 		/**
-		 * Main CoBlocks Instance.
+		 * Main AnpsBlocks Instance.
 		 *
-		 * Insures that only one instance of CoBlocks exists in memory at any one
+		 * Insures that only one instance of AnpsBlocks exists in memory at any one
 		 * time. Also prevents needing to define globals all over the place.
 		 *
 		 * @since 1.0.0
 		 * @static
-		 * @return object|CoBlocks The one true CoBlocks
+		 * @return object|AnpsBlocks The one true AnpsBlocks
 		 */
-		public static function instance() {
-			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CoBlocks ) ) {
-				self::$instance = new CoBlocks();
+		public static function instance()
+		{
+			if (!isset(self::$instance) && !(self::$instance instanceof AnpsBlocks)) {
+				self::$instance = new AnpsBlocks();
 				self::$instance->init();
 				self::$instance->includes();
 			}
@@ -76,9 +69,10 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 * @access protected
 		 * @return void
 		 */
-		public function __clone() {
+		public function __clone()
+		{
 			// Cloning instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'coblocks' ), '1.0' );
+			_doing_it_wrong(__FUNCTION__, esc_html__('Something went wrong.', 'anpsblocks'), '1.0');
 		}
 
 		/**
@@ -88,9 +82,10 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 * @access protected
 		 * @return void
 		 */
-		public function __wakeup() {
+		public function __wakeup()
+		{
 			// Unserializing instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'coblocks' ), '1.0' );
+			_doing_it_wrong(__FUNCTION__, esc_html__('Something went wrong.', 'anpsblocks'), '1.0');
 		}
 
 		/**
@@ -100,36 +95,37 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 * @since 1.0.0
 		 * @return void
 		 */
-		private function includes() {
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-block-assets.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-register-blocks.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-generated-styles.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-body-classes.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-form.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-font-loader.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-post-meta.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-google-map-block.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-accordion-ie-support.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/class-coblocks-settings.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/get-dynamic-blocks.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-coblocks-event.php';
-			require_once COBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-coblocks-ical.php';
+		private function includes()
+		{
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-block-assets.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-register-blocks.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-generated-styles.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-body-classes.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-form.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-font-loader.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-post-meta.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-google-map-block.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-accordion-ie-support.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-settings.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/get-dynamic-blocks.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-anpsblocks-event.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-anpsblocks-ical.php';
 
 			// Require the Gutenberg plugin for specific components.
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 			$installed_plugins = get_plugins();
 
 			$gutenberg_plugin_file    = 'gutenberg/gutenberg.php';
-			$gutenberg_plugin_version = empty( $installed_plugins[ $gutenberg_plugin_file ] ) ? null : $installed_plugins[ $gutenberg_plugin_file ]['Version'];
+			$gutenberg_plugin_version = empty($installed_plugins[$gutenberg_plugin_file]) ? null : $installed_plugins[$gutenberg_plugin_file]['Version'];
 
-			if ( is_admin() && is_plugin_active( $gutenberg_plugin_file ) && version_compare( $gutenberg_plugin_version, '8.0.0', '>=' ) ) {
-				require_once COBLOCKS_PLUGIN_DIR . 'src/extensions/layout-selector/index.php';
+			if (is_admin() && is_plugin_active($gutenberg_plugin_file) && version_compare($gutenberg_plugin_version, '8.0.0', '>=')) {
+				require_once ANPSBLOCKS_PLUGIN_DIR . 'src/extensions/layout-selector/index.php';
 			}
 
-			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-				require_once COBLOCKS_PLUGIN_DIR . 'includes/admin/class-coblocks-action-links.php';
-				require_once COBLOCKS_PLUGIN_DIR . 'includes/admin/class-coblocks-install.php';
-				require_once COBLOCKS_PLUGIN_DIR . 'includes/admin/class-coblocks-crop-settings.php';
+			if (is_admin() || (defined('WP_CLI') && WP_CLI)) {
+				require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/admin/class-anpsblocks-action-links.php';
+				require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/admin/class-anpsblocks-install.php';
+				require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/admin/class-anpsblocks-crop-settings.php';
 			}
 		}
 
@@ -138,9 +134,10 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 *
 		 * @return void
 		 */
-		private function init() {
-			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ), 99 );
-			add_action( 'enqueue_block_editor_assets', array( $this, 'block_localization' ) );
+		private function init()
+		{
+			add_action('plugins_loaded', array($this, 'load_textdomain'), 99);
+			add_action('enqueue_block_editor_assets', array($this, 'block_localization'));
 		}
 
 		/**
@@ -150,12 +147,13 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 * @param string|string $type The type of resource.
 		 * @param string|string $directory Any extra directories needed.
 		 */
-		public function asset_source( $type = 'js', $directory = null ) {
+		public function asset_source($type = 'js', $directory = null)
+		{
 
-			if ( 'js' === $type ) {
-				return COBLOCKS_PLUGIN_URL . 'dist/' . $type . '/' . $directory;
+			if ('js' === $type) {
+				return ANPSBLOCKS_PLUGIN_URL . 'dist/' . $type . '/' . $directory;
 			} else {
-				return COBLOCKS_PLUGIN_URL . 'dist/css/' . $directory;
+				return ANPSBLOCKS_PLUGIN_URL . 'dist/css/' . $directory;
 			}
 		}
 
@@ -166,8 +164,9 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 * @since 1.0.0
 		 * @return void
 		 */
-		public function load_textdomain() {
-			load_plugin_textdomain( 'coblocks', false, basename( COBLOCKS_PLUGIN_DIR ) . '/languages' );
+		public function load_textdomain()
+		{
+			load_plugin_textdomain('anpsblocks', false, basename(ANPSBLOCKS_PLUGIN_DIR) . '/languages');
 		}
 
 		/**
@@ -175,9 +174,10 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 *
 		 * @access public
 		 */
-		public function block_localization() {
-			if ( function_exists( 'wp_set_script_translations' ) ) {
-				wp_set_script_translations( 'coblocks-editor', 'coblocks', COBLOCKS_PLUGIN_DIR . '/languages' );
+		public function block_localization()
+		{
+			if (function_exists('wp_set_script_translations')) {
+				wp_set_script_translations('anpsblocks-editor', 'anpsblocks', ANPSBLOCKS_PLUGIN_DIR . '/languages');
 			}
 		}
 
@@ -186,33 +186,35 @@ if ( ! class_exists( 'CoBlocks' ) ) :
 		 *
 		 * @return bool Whether the current response will be AMP.
 		 */
-		public function is_amp() {
-			return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+		public function is_amp()
+		{
+			return function_exists('is_amp_endpoint') && is_amp_endpoint();
 		}
 	}
 endif;
 
 /**
- * The main function for that returns CoBlocks
+ * The main function for that returns AnpsBlocks
  *
- * The main function responsible for returning the one true CoBlocks
+ * The main function responsible for returning the one true AnpsBlocks
  * Instance to functions everywhere.
  *
  * Use this function like you would a global variable, except without needing
  * to declare the global.
  *
- * Example: <?php $coblocks = CoBlocks(); ?>
+ * Example: <?php $anpsblocks = AnpsBlocks(); ?>
  *
  * @since 1.0.0
- * @return object|CoBlocks The one true CoBlocks Instance.
+ * @return object|AnpsBlocks The one true AnpsBlocks Instance.
  */
-function coblocks() {
-	return CoBlocks::instance();
+function anpsblocks()
+{
+	return AnpsBlocks::instance();
 }
 
 // Get the plugin running. Load on plugins_loaded action to avoid issue on multisite.
-if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-	add_action( 'plugins_loaded', 'coblocks', 90 );
+if (function_exists('is_multisite') && is_multisite()) {
+	add_action('plugins_loaded', 'anpsblocks', 90);
 } else {
-	coblocks();
+	anpsblocks();
 }

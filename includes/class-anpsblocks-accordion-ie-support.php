@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Load assets and meta for browser legacy support.
  *
@@ -6,7 +7,7 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
@@ -15,7 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class CoBlocks_Accordion_IE_Support {
+class CoBlocks_Accordion_IE_Support
+{
 
 
 	/**
@@ -30,8 +32,9 @@ class CoBlocks_Accordion_IE_Support {
 	 *
 	 * @return CoBlocks_Accordion_IE_Support
 	 */
-	public static function register() {
-		if ( null === self::$instance ) {
+	public static function register()
+	{
+		if (null === self::$instance) {
 			self::$instance = new CoBlocks_Accordion_IE_Support();
 		}
 
@@ -55,12 +58,13 @@ class CoBlocks_Accordion_IE_Support {
 	/**
 	 * The Constructor.
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$this->slug = 'coblocks';
-		$this->url  = untrailingslashit( plugins_url( '/', dirname( __FILE__ ) ) );
+		$this->url  = untrailingslashit(plugins_url('/', dirname(__FILE__)));
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
-		add_action( 'the_post', array( $this, 'load_assets' ) );
+		add_action('wp_enqueue_scripts', array($this, 'load_assets'));
+		add_action('the_post', array($this, 'load_assets'));
 	}
 
 	/**
@@ -68,29 +72,29 @@ class CoBlocks_Accordion_IE_Support {
 	 *
 	 * @access public
 	 */
-	public function load_assets() {
+	public function load_assets()
+	{
 
 		global $post;
 
 		// Validate Post ID.
-		if ( ! isset( $post->ID ) || empty( $post->ID ) ) {
+		if (!isset($post->ID) || empty($post->ID)) {
 
 			return;
-
 		}
 
-		$legacy_support = get_post_meta( $post->ID, '_coblocks_accordion_ie_support', true );
+		$legacy_support = get_post_meta($post->ID, '_coblocks_accordion_ie_support', true);
 
 		// Determine whether a $post contains an Accordion block.
-		if ( has_block( 'coblocks/accordion' ) && "'true'" === $legacy_support ) {
+		if (has_block('coblocks/accordion') && "'true'" === $legacy_support) {
 
-			$dir = CoBlocks()->asset_source( 'js' );
+			$dir = CoBlocks()->asset_source('js');
 
 			wp_enqueue_script(
 				$this->slug . '-accordion-polyfill',
 				$dir . $this->slug . '-accordion-polyfill.js',
 				array(),
-				COBLOCKS_VERSION,
+				ANPSBLOCKS_VERSION,
 				true
 			);
 		}
