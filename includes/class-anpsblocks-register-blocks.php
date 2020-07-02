@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register blocks.
  *
@@ -6,7 +7,7 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
@@ -15,7 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.6.0
  */
-class CoBlocks_Register_Blocks {
+class CoBlocks_Register_Blocks
+{
 
 
 	/**
@@ -30,8 +32,9 @@ class CoBlocks_Register_Blocks {
 	 *
 	 * @return CoBlocks_Register_Blocks
 	 */
-	public static function register() {
-		if ( null === self::$instance ) {
+	public static function register()
+	{
+		if (null === self::$instance) {
 			self::$instance = new CoBlocks_Register_Blocks();
 		}
 
@@ -48,10 +51,11 @@ class CoBlocks_Register_Blocks {
 	/**
 	 * The Constructor.
 	 */
-	public function __construct() {
-		$this->slug = 'coblocks';
+	public function __construct()
+	{
+		$this->slug = 'anpsblocks';
 
-		add_action( 'init', array( $this, 'register_blocks' ), 99 );
+		add_action('init', array($this, 'register_blocks'), 99);
 	}
 
 	/**
@@ -59,10 +63,11 @@ class CoBlocks_Register_Blocks {
 	 *
 	 * @access public
 	 */
-	public function register_blocks() {
+	public function register_blocks()
+	{
 
 		// Return early if this function does not exist.
-		if ( ! function_exists( 'register_block_type' ) ) {
+		if (!function_exists('register_block_type')) {
 			return;
 		}
 

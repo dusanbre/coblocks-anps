@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register post meta.
  *
@@ -6,7 +7,7 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
@@ -15,56 +16,59 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.6.0
  */
-class CoBlocks_Post_Meta {
+class CoBlocks_Post_Meta
+{
 
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
-		add_filter( 'init', array( $this, 'register_meta' ) );
+	public function __construct()
+	{
+		add_filter('init', array($this, 'register_meta'));
 	}
 
 	/**
 	 * Register meta.
 	 */
-	public function register_meta() {
+	public function register_meta()
+	{
 		register_meta(
 			'post',
-			'_coblocks_attr',
+			'_anpsblocks_attr',
 			array(
 				'show_in_rest'  => true,
 				'single'        => true,
-				'auth_callback' => array( $this, 'auth_callback' ),
+				'auth_callback' => array($this, 'auth_callback'),
 			)
 		);
 
 		register_meta(
 			'post',
-			'_coblocks_dimensions',
+			'_anpsblocks_dimensions',
 			array(
 				'show_in_rest'  => true,
 				'single'        => true,
-				'auth_callback' => array( $this, 'auth_callback' ),
+				'auth_callback' => array($this, 'auth_callback'),
 			)
 		);
 
 		register_meta(
 			'post',
-			'_coblocks_responsive_height',
+			'_anpsblocks_responsive_height',
 			array(
 				'show_in_rest'  => true,
 				'single'        => true,
-				'auth_callback' => array( $this, 'auth_callback' ),
+				'auth_callback' => array($this, 'auth_callback'),
 			)
 		);
 
 		register_meta(
 			'post',
-			'_coblocks_accordion_ie_support',
+			'_anpsblocks_accordion_ie_support',
 			array(
 				'show_in_rest'  => true,
 				'single'        => true,
-				'auth_callback' => array( $this, 'auth_callback' ),
+				'auth_callback' => array($this, 'auth_callback'),
 			)
 		);
 	}
@@ -74,10 +78,10 @@ class CoBlocks_Post_Meta {
 	 *
 	 * @return bool True when can edit posts, else false.
 	 */
-	public function auth_callback() {
+	public function auth_callback()
+	{
 
-		return current_user_can( 'edit_posts' );
-
+		return current_user_can('edit_posts');
 	}
 }
 

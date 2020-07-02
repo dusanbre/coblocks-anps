@@ -15,41 +15,39 @@ $color-alert-success-bg: #d0eac4;
 $color-alert-success-color: #154a28;
 
 // Spacing
-$spacing: (
-	1: 0.5em,
+$spacing: (1: 0.5em,
 	2: 1em,
 	3: 1.5em,
 	4: 2em,
 	5: 2.5em,
 	6: 3em,
 	7: 3.5em,
-	8: 4em
-);
+	8: 4em);
 
 // CSS Custom Properties
 :root {
-	--coblocks-spacing--0: 0;
-	--coblocks-spacing--1: #{map-get($spacing, 1)};
-	--coblocks-spacing--2: #{map-get($spacing, 2)};
-	--coblocks-spacing--3: #{map-get($spacing, 3)};
-	--coblocks-spacing--4: #{map-get($spacing, 4)};
-	--coblocks-spacing--5: #{map-get($spacing, 5)};
-	--coblocks-spacing--6: #{map-get($spacing, 6)};
-	--coblocks-spacing--7: #{map-get($spacing, 7)};
-	--coblocks-spacing--8: #{map-get($spacing, 8)};
+	--anpsblocks-spacing--0: 0;
+	--anpsblocks-spacing--1: #{map-get($spacing, 1)};
+	--anpsblocks-spacing--2: #{map-get($spacing, 2)};
+	--anpsblocks-spacing--3: #{map-get($spacing, 3)};
+	--anpsblocks-spacing--4: #{map-get($spacing, 4)};
+	--anpsblocks-spacing--5: #{map-get($spacing, 5)};
+	--anpsblocks-spacing--6: #{map-get($spacing, 6)};
+	--anpsblocks-spacing--7: #{map-get($spacing, 7)};
+	--anpsblocks-spacing--8: #{map-get($spacing, 8)};
 }
 
 // Colors
-$color-alert-default-bg: var(--coblocks-alert-default--color--background, $color-alert-default-bg);
-$color-alert-default-color: var(--coblocks-alert-default--color--text, $color-alert-default-color);
+$color-alert-default-bg: var(--anpsblocks-alert-default--color--background, $color-alert-default-bg);
+$color-alert-default-color: var(--anpsblocks-alert-default--color--text, $color-alert-default-color);
 
-$color-alert-warning-bg: var(--coblocks-alert-default--color--background, $color-alert-warning-bg);
-$color-alert-warning-color: var(--coblocks-alert-warning--color--text, $color-alert-warning-color);
+$color-alert-warning-bg: var(--anpsblocks-alert-default--color--background, $color-alert-warning-bg);
+$color-alert-warning-color: var(--anpsblocks-alert-warning--color--text, $color-alert-warning-color);
 
-$color-alert-error-bg: var(--coblocks-alert-default--color--background, $color-alert-error-bg);
-$color-alert-error-color: var(--coblocks-alert-error--color--text, $color-alert-error-color);
+$color-alert-error-bg: var(--anpsblocks-alert-default--color--background, $color-alert-error-bg);
+$color-alert-error-color: var(--anpsblocks-alert-error--color--text, $color-alert-error-color);
 
-$color-alert-success-bg: var(--coblocks-alert-default--color--background, $color-alert-success-bg);
-$color-alert-success-color: var(--coblocks-alert-error--color--text, $color-alert-success-color);
+$color-alert-success-bg: var(--anpsblocks-alert-default--color--background, $color-alert-success-bg);
+$color-alert-success-color: var(--anpsblocks-alert-error--color--text, $color-alert-success-color);
 
 @import "styles/mixins";

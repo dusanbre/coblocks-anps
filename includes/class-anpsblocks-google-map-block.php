@@ -60,7 +60,7 @@ class AnpsBlocks_Google_Map_Block
 	 */
 	public function __construct()
 	{
-		$this->slug = 'coblocks';
+		$this->slug = 'anpsblocks';
 		$this->url  = untrailingslashit(plugins_url('/', dirname(__FILE__)));
 
 		add_action('wp_enqueue_scripts', array($this, 'map_assets'));
@@ -77,13 +77,13 @@ class AnpsBlocks_Google_Map_Block
 	{
 
 		// Retrieve the Google Maps API key.
-		$key = get_option('coblocks_google_maps_api_key');
+		$key = get_option('anpsblocks_google_maps_api_key');
 
 		// Define where the asset is loaded from.
 		$dir = AnpsBlocks()->asset_source('js');
 
 		// Determine whether a $post contains a Map block.
-		if (has_block('coblocks/map') && $key) {
+		if (has_block('anpsblocks/map') && $key) {
 
 			wp_enqueue_script(
 				$this->slug . '-google-maps',
@@ -106,7 +106,7 @@ class AnpsBlocks_Google_Map_Block
 				);
 			}
 
-			wp_localize_script($this->slug . '-google-maps', 'coblocksGoogleMaps', array('url' => $this->url));
+			wp_localize_script($this->slug . '-google-maps', 'anpsblocksGoogleMaps', array('url' => $this->url));
 		}
 	}
 
@@ -118,11 +118,11 @@ class AnpsBlocks_Google_Map_Block
 	public function register_settings()
 	{
 		register_setting(
-			'coblocks_google_maps_api_key',
-			'coblocks_google_maps_api_key',
+			'anpsblocks_google_maps_api_key',
+			'anpsblocks_google_maps_api_key',
 			array(
 				'type'              => 'string',
-				'description'       => __('Google Map API key for map rendering', 'coblocks'),
+				'description'       => __('Google Map API key for map rendering', 'anpsblocks'),
 				'sanitize_callback' => 'sanitize_text_field',
 				'show_in_rest'      => true,
 				'default'           => '',

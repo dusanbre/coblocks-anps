@@ -82,17 +82,17 @@ class AnpsBlocks_Block_Assets
 		global $post;
 
 		// Only load the front end CSS if a Coblock is in use.
-		$has_coblock = !is_singular();
+		$has_anpsblock = !is_singular();
 
 		if (!is_admin() && is_singular()) {
 			$wp_post = get_post($post);
 
 			// This is similar to has_block() in core, but will match anything
-			// in the coblocks/* namespace.
+			// in the anpsblocks/* namespace.
 			if ($wp_post instanceof WP_Post) {
-				$has_coblock = !empty(array_filter(
+				$has_anpsblock = !empty(array_filter(
 					array(
-						false !== strpos($wp_post->post_content, '<!-- wp:coblocks/'),
+						false !== strpos($wp_post->post_content, '<!-- wp:anpsblocks/'),
 						has_block('core/block', $wp_post),
 						has_block('core/button', $wp_post),
 						has_block('core/cover', $wp_post),
@@ -107,18 +107,18 @@ class AnpsBlocks_Block_Assets
 			}
 		}
 
-		if (!$has_coblock && !$this->is_page_gutenberg()) {
+		if (!$has_anpsblock && !$this->is_page_gutenberg()) {
 			return;
 		}
 
 		// Styles.
-		$name       = 'coblocks-style';
+		$name       = 'anpsblocks-style';
 		$filepath   = 'dist/' . $name;
 		$asset_file = $this->get_asset_file($filepath);
 		$rtl        = !is_rtl() ? '' : '-rtl';
 
 		wp_enqueue_style(
-			'coblocks-frontend',
+			'anpsblocks-frontend',
 			ANPSBLOCKS_PLUGIN_URL . $filepath . $rtl . '.css',
 			array(),
 			$asset_file['version']
@@ -133,25 +133,25 @@ class AnpsBlocks_Block_Assets
 	public function editor_assets()
 	{
 		// Styles.
-		$name       = 'coblocks-editor';
+		$name       = 'anpsblocks-editor';
 		$filepath   = 'dist/' . $name;
 		$asset_file = $this->get_asset_file($filepath);
 		$rtl        = !is_rtl() ? '' : '-rtl';
 
 		wp_register_style(
-			'coblocks-editor',
+			'anpsblocks-editor',
 			ANPSBLOCKS_PLUGIN_URL . $filepath . $rtl . '.css',
 			array(),
 			$asset_file['version']
 		);
 
 		// Scripts.
-		$name       = 'coblocks';
+		$name       = 'anpsblocks';
 		$filepath   = 'dist/' . $name;
 		$asset_file = $this->get_asset_file($filepath);
 
 		wp_register_script(
-			'coblocks-editor',
+			'anpsblocks-editor',
 			ANPSBLOCKS_PLUGIN_URL . $filepath . '.js',
 			array_merge($asset_file['dependencies'], array('wp-api')),
 			$asset_file['version'],
@@ -166,7 +166,7 @@ class AnpsBlocks_Block_Assets
 		 * @param string  $to      Admin email.
 		 * @param integer $post_id Current post ID.
 		 */
-		$email_to = (string) apply_filters('coblocks_form_default_email', get_option('admin_email'), (int) $post_id);
+		$email_to = (string) apply_filters('anpsblocks_form_default_email', get_option('admin_email'), (int) $post_id);
 
 		/**
 		 * Filter to disable the typography controls
@@ -174,20 +174,20 @@ class AnpsBlocks_Block_Assets
 		 * @param bool    true Whether or not the controls are enabled.
 		 * @param integer $post_id Current post ID.
 		 */
-		$typography_controls_enabled = (bool) apply_filters('coblocks_typography_controls_enabled', true, (int) $post_id);
+		$typography_controls_enabled = (bool) apply_filters('anpsblocks_typography_controls_enabled', true, (int) $post_id);
 
 		/**
 		 * Filter to disable all bundled AnpsBlocks svg icons
 		 *
 		 * @param bool true Whether or not the bundled icons are displayed.
 		 */
-		$bundled_icons_enabled = (bool) apply_filters('coblocks_bundled_icons_enabled', true);
+		$bundled_icons_enabled = (bool) apply_filters('anpsblocks_bundled_icons_enabled', true);
 
 		$form_subject = (new CoBlocks_Form())->default_subject();
 
 		wp_localize_script(
-			'coblocks-editor',
-			'coblocksBlockData',
+			'anpsblocks-editor',
+			'anpsblocksBlockData',
 			array(
 				'form'                           => array(
 					'adminEmail'   => $email_to,
@@ -197,7 +197,7 @@ class AnpsBlocks_Block_Assets
 				'cropSettingsNonce'              => wp_create_nonce('cropSettingsNonce'),
 				'bundledIconsEnabled'            => $bundled_icons_enabled,
 				'customIcons'                    => $this->get_custom_icons(),
-				'customIconConfigExists'         => file_exists(get_stylesheet_directory() . '/coblocks/icons/config.json'),
+				'customIconConfigExists'         => file_exists(get_stylesheet_directory() . '/anpsblocks/icons/config.json'),
 				'typographyControlsEnabled'      => $typography_controls_enabled,
 			)
 		);
@@ -212,16 +212,16 @@ class AnpsBlocks_Block_Assets
 	{
 
 		$config = array();
-		$icons  = glob(get_stylesheet_directory() . '/coblocks/icons/*.svg');
+		$icons  = glob(get_stylesheet_directory() . '/anpsblocks/icons/*.svg');
 
 		if (empty($icons)) {
 
 			return array();
 		}
 
-		if (file_exists(get_stylesheet_directory() . '/coblocks/icons/config.json')) {
+		if (file_exists(get_stylesheet_directory() . '/anpsblocks/icons/config.json')) {
 
-			$config = json_decode(file_get_contents(get_stylesheet_directory() . '/coblocks/icons/config.json'), true);
+			$config = json_decode(file_get_contents(get_stylesheet_directory() . '/anpsblocks/icons/config.json'), true);
 		}
 
 		$custom_icons = array();
@@ -262,7 +262,7 @@ class AnpsBlocks_Block_Assets
 
 				if (array_key_exists('icon_outlined', $config[$icon])) {
 
-					$metadata['icon_outlined'] = file_exists(get_stylesheet_directory() . '/coblocks/icons/' . $metadata['icon_outlined']) ? file_get_contents(get_stylesheet_directory() . '/coblocks/icons/' . $metadata['icon_outlined']) : '';
+					$metadata['icon_outlined'] = file_exists(get_stylesheet_directory() . '/anpsblocks/icons/' . $metadata['icon_outlined']) ? file_get_contents(get_stylesheet_directory() . '/anpsblocks/icons/' . $metadata['icon_outlined']) : '';
 				}
 
 				$custom_icons[$icon] = array_replace_recursive($custom_icons[$icon], array_filter($metadata));
@@ -292,10 +292,10 @@ class AnpsBlocks_Block_Assets
 		$vendors_dir = AnpsBlocks()->asset_source('js', 'vendors');
 
 		// Masonry block.
-		if (has_block('coblocks/gallery-masonry') || has_block('core/block')) {
+		if (has_block('anpsblocks/gallery-masonry') || has_block('core/block')) {
 			wp_enqueue_script(
-				'coblocks-masonry',
-				$dir . 'coblocks-masonry.js',
+				'anpsblocks-masonry',
+				$dir . 'anpsblocks-masonry.js',
 				array('jquery', 'masonry', 'imagesloaded'),
 				ANPSBLOCKS_VERSION,
 				true
@@ -303,20 +303,20 @@ class AnpsBlocks_Block_Assets
 		}
 
 		// Carousel block.
-		if (has_block('coblocks/gallery-carousel') || has_block('core/block')) {
+		if (has_block('anpsblocks/gallery-carousel') || has_block('core/block')) {
 			wp_enqueue_script(
-				'coblocks-flickity',
+				'anpsblocks-flickity',
 				$vendors_dir . '/flickity.js',
 				array('jquery'),
 				ANPSBLOCKS_VERSION,
 				true
 			);
 
-			if (has_block('coblocks/accordion') || has_block('core/block')) {
+			if (has_block('anpsblocks/accordion') || has_block('core/block')) {
 				wp_enqueue_script(
-					'coblocks-accordion-carousel',
-					$dir . 'coblocks-accordion-carousel.js',
-					array('coblocks-flickity'),
+					'anpsblocks-accordion-carousel',
+					$dir . 'anpsblocks-accordion-carousel.js',
+					array('anpsblocks-flickity'),
 					ANPSBLOCKS_VERSION,
 					true
 				);
@@ -324,17 +324,17 @@ class AnpsBlocks_Block_Assets
 		}
 
 		// Post Carousel block.
-		if (has_block('coblocks/post-carousel') || has_block('core/block')) {
+		if (has_block('anpsblocks/post-carousel') || has_block('core/block')) {
 			wp_enqueue_script(
-				'coblocks-slick',
+				'anpsblocks-slick',
 				$vendors_dir . '/slick.js',
 				array('jquery'),
 				ANPSBLOCKS_VERSION,
 				true
 			);
 			wp_enqueue_script(
-				'coblocks-slick-initializer-front',
-				$dir . 'coblocks-slick-initializer-front.js',
+				'anpsblocks-slick-initializer-front',
+				$dir . 'anpsblocks-slick-initializer-front.js',
 				array('jquery'),
 				ANPSBLOCKS_VERSION,
 				true
@@ -342,17 +342,17 @@ class AnpsBlocks_Block_Assets
 		}
 
 		// Events block.
-		if (has_block('coblocks/events') || has_block('core/block')) {
+		if (has_block('anpsblocks/events') || has_block('core/block')) {
 			wp_enqueue_script(
-				'coblocks-slick',
+				'anpsblocks-slick',
 				$vendors_dir . '/slick.js',
 				array('jquery'),
 				ANPSBLOCKS_VERSION,
 				true
 			);
 			wp_enqueue_script(
-				'coblocks-events',
-				$dir . 'coblocks-events.js',
+				'anpsblocks-events',
+				$dir . 'anpsblocks-events.js',
 				array('jquery'),
 				ANPSBLOCKS_VERSION,
 				true
@@ -360,10 +360,10 @@ class AnpsBlocks_Block_Assets
 		}
 
 		// Lightbox.
-		if (has_block('coblocks/gallery-masonry') || has_block('coblocks/gallery-stacked') || has_block('coblocks/gallery-collage') || has_block('coblocks/gallery-carousel') || has_block('coblocks/gallery-offset') || has_block('core/block')) {
+		if (has_block('anpsblocks/gallery-masonry') || has_block('anpsblocks/gallery-stacked') || has_block('anpsblocks/gallery-collage') || has_block('anpsblocks/gallery-carousel') || has_block('anpsblocks/gallery-offset') || has_block('core/block')) {
 			wp_enqueue_script(
-				'coblocks-lightbox',
-				$dir . 'coblocks-lightbox.js',
+				'anpsblocks-lightbox',
+				$dir . 'anpsblocks-lightbox.js',
 				array('jquery'),
 				ANPSBLOCKS_VERSION,
 				true
@@ -384,7 +384,7 @@ class AnpsBlocks_Block_Assets
 
 		// Required by the events block.
 		wp_enqueue_script(
-			'coblocks-slick',
+			'anpsblocks-slick',
 			$vendors_dir . '/slick.js',
 			array('jquery'),
 			ANPSBLOCKS_VERSION,

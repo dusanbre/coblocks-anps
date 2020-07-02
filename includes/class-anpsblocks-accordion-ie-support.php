@@ -60,7 +60,7 @@ class CoBlocks_Accordion_IE_Support
 	 */
 	public function __construct()
 	{
-		$this->slug = 'coblocks';
+		$this->slug = 'anpsblocks';
 		$this->url  = untrailingslashit(plugins_url('/', dirname(__FILE__)));
 
 		add_action('wp_enqueue_scripts', array($this, 'load_assets'));
@@ -83,10 +83,10 @@ class CoBlocks_Accordion_IE_Support
 			return;
 		}
 
-		$legacy_support = get_post_meta($post->ID, '_coblocks_accordion_ie_support', true);
+		$legacy_support = get_post_meta($post->ID, '_anpsblocks_accordion_ie_support', true);
 
 		// Determine whether a $post contains an Accordion block.
-		if (has_block('coblocks/accordion') && "'true'" === $legacy_support) {
+		if (has_block('anpsblocks/accordion') && "'true'" === $legacy_support) {
 
 			$dir = CoBlocks()->asset_source('js');
 

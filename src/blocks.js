@@ -18,7 +18,7 @@ import "./extensions/image-styles";
 import "./extensions/cover-styles";
 import "./extensions/replace-image";
 import "./extensions/image-crop";
-import "./extensions/coblocks-settings/";
+import "./extensions/anpsblocks-settings/";
 import "./extensions/layout-selector";
 
 // Formats
@@ -28,7 +28,7 @@ import "./formats";
 import { supportsCollections } from "./utils/block-helpers";
 
 // Deprecate Blocks
-import "./js/deprecations/deprecate-coblocks-buttons.js";
+import "./js/deprecations/deprecate-anpsblocks-buttons.js";
 
 // Register Blocks
 import * as accordion from "./blocks/accordion";
@@ -44,8 +44,6 @@ import * as events from "./blocks/events";
 import * as eventItem from "./blocks/events/event-item";
 import * as feature from "./blocks/features/feature";
 import * as features from "./blocks/features";
-import * as foodAndDrinks from "./blocks/food-and-drinks";
-import * as foodItem from "./blocks/food-and-drinks/food-item";
 import * as form from "./blocks/form";
 import * as fieldDate from "./blocks/form/fields/date";
 import * as fieldEmail from "./blocks/form/fields/email";
@@ -97,7 +95,7 @@ const registerBlock = block => {
 	const { name, settings } = block;
 
 	if (!supportsCollections() && !name.includes("gallery")) {
-		category = "coblocks";
+		category = "anpsblocks";
 	}
 
 	registerBlockType(name, {
@@ -136,8 +134,6 @@ export const registerCoBlocksBlocks = () => {
 		fieldCheckbox,
 		fieldWebsite,
 		fieldHidden,
-		foodAndDrinks,
-		foodItem,
 		form,
 		gif,
 		gist,

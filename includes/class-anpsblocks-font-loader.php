@@ -61,7 +61,7 @@ class CoBlocks_Font_Loader
 
 		if ($post && isset($post->ID)) {
 
-			$fonts = get_post_meta($post->ID, '_coblocks_attr', true);
+			$fonts = get_post_meta($post->ID, '_anpsblocks_attr', true);
 
 			if (!empty($fonts)) {
 
@@ -93,13 +93,13 @@ class CoBlocks_Font_Loader
 					);
 
 					wp_register_style(
-						'coblocks-block-fonts',
+						'anpsblocks-block-fonts',
 						add_query_arg($query_args, '//fonts.googleapis.com/css'),
 						array(),
 						ANPSBLOCKS_VERSION
 					);
 
-					wp_enqueue_style('coblocks-block-fonts');
+					wp_enqueue_style('anpsblocks-block-fonts');
 				}
 
 				// Reset.

@@ -42,7 +42,7 @@ class CoBlocks_Action_Links
 
 		if (ANPSBLOCKS_PLUGIN_BASE === $plugin_file) {
 			$row_meta = array(
-				'review' => '<a href="' . esc_url(ANPSBLOCKS_REVIEW_URL) . '" aria-label="' . esc_attr(__('Review CoBlocks on WordPress.org', 'coblocks')) . '" target="_blank">' . __('Leave a Review', 'coblocks') . '</a>',
+				'review' => '<a href="' . esc_url(ANPSBLOCKS_REVIEW_URL) . '" aria-label="' . esc_attr(__('Review CoBlocks on WordPress.org', 'anpsblocks')) . '" target="_blank">' . __('Leave a Review', 'anpsblocks') . '</a>',
 			);
 
 			$plugin_meta = array_merge($plugin_meta, $row_meta);

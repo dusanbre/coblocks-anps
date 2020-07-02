@@ -1,26 +1,25 @@
 <?php
+
 /**
  * CoBlocks Uninstall
  *
  * @package CoBlocks
  */
 
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if (!defined('WP_UNINSTALL_PLUGIN')) {
 
 	die;
-
 }
 
-$coblocks_options = array(
-	'coblocks_settings_api',
-	'coblocks_plugin_feedback_activation_date',
-	'coblocks_date_installed',
-	'coblocks_google_maps_api_key',
-	'coblocks_plugin_feedback_no_bug',
+$anpsblocks_options = array(
+	'anpsblocks_settings_api',
+	'anpsblocks_plugin_feedback_activation_date',
+	'anpsblocks_date_installed',
+	'anpsblocks_google_maps_api_key',
+	'anpsblocks_plugin_feedback_no_bug',
 );
 
-foreach ( $coblocks_options as $coblocks_option ) {
+foreach ($anpsblocks_options as $anpsblocks_option) {
 
-	delete_option( $coblocks_option );
-
+	delete_option($anpsblocks_option);
 }
