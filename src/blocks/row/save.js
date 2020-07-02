@@ -42,7 +42,17 @@ function Save({ attributes }) {
 		paddingTop,
 		paddingBottom,
 		paddingLeft,
-		paddingRight
+		paddingRight,
+		marginTopMobile,
+		marginBottomMobile,
+		marginLeftMobile,
+		marginRightMobile,
+		paddingTopMobile,
+		paddingBottomMobile,
+		paddingLeftMobile,
+		paddingRightMobile,
+		paddingUnit,
+		marginUnit
 	} = attributes;
 
 	const textClass = getColorClassName("color", textColor);
@@ -74,47 +84,36 @@ function Save({ attributes }) {
 	];
 
 	const innerStyles = {
-		// marginTop: marginTop ? marginTop : null,
-		// marginBottom: marginBottom ? marginBottom : null,
-		// marginLeft: marginLeft ? marginLeft : null,
-		// marginRight: marginRight ? marginRight : null,
-		// paddingTop: paddingTop ? paddingTop : null,
-		// paddingBottom: paddingBottom ? paddingBottom : null,
-		// paddingLeft: paddingLeft ? paddingLeft : null,
-		// paddingRight: paddingRight ? paddingRight : null,
 		backgroundColor: backgroundClass ? undefined : customBackgroundColor,
+
 		paddingTop:
 			paddingSize === "advanced" && paddingTop
 				? paddingTop + paddingUnit
-				: undefined,
+				: null,
 		paddingRight:
 			paddingSize === "advanced" && paddingRight
 				? paddingRight + paddingUnit
-				: undefined,
+				: null,
 		paddingBottom:
 			paddingSize === "advanced" && paddingBottom
 				? paddingBottom + paddingUnit
-				: undefined,
+				: null,
 		paddingLeft:
 			paddingSize === "advanced" && paddingLeft
 				? paddingLeft + paddingUnit
-				: undefined,
+				: null,
 		marginTop:
-			marginSize === "advanced" && marginTop
-				? marginTop + marginUnit
-				: undefined,
+			marginSize === "advanced" && marginTop ? marginTop + marginUnit : null,
 		marginRight:
 			marginSize === "advanced" && marginRight
 				? marginRight + marginUnit
-				: undefined,
+				: null,
 		marginBottom:
 			marginSize === "advanced" && marginBottom
 				? marginBottom + marginUnit
-				: undefined,
+				: null,
 		marginLeft:
-			marginSize === "advanced" && marginLeft
-				? marginLeft + marginUnit
-				: undefined,
+			marginSize === "advanced" && marginLeft ? marginLeft + marginUnit : null,
 		backgroundImage:
 			backgroundImg && backgroundType === "image"
 				? `url(${backgroundImg})`
@@ -125,7 +124,56 @@ function Save({ attributes }) {
 				: undefined,
 		color: textClass ? undefined : customTextColor
 	};
-	console.log(attributes);
+
+	const innerStylesMobile = {
+		backgroundColor: backgroundClass ? undefined : customBackgroundColor,
+
+		paddingTop:
+			paddingSize === "advanced" && paddingTopMobile
+				? paddingTopMobile + paddingUnit
+				: null,
+		paddingRight:
+			paddingSize === "advanced" && paddingRightMobile
+				? paddingRightMobile + paddingUnit
+				: null,
+		paddingBottom:
+			paddingSize === "advanced" && paddingBottomMobile
+				? paddingBottomMobile + paddingUnit
+				: null,
+		paddingLeft:
+			paddingSize === "advanced" && paddingLeftMobile
+				? paddingLeftMobile + paddingUnit
+				: null,
+		marginTop:
+			marginSize === "advanced" && marginTop ? marginTop + marginUnit : null,
+		marginRight:
+			marginSize === "advanced" && marginRight
+				? marginRight + marginUnit
+				: null,
+		marginBottom:
+			marginSize === "advanced" && marginBottom
+				? marginBottom + marginUnit
+				: null,
+		marginLeft:
+			marginSize === "advanced" && marginLeft ? marginLeft + marginUnit : null,
+		backgroundImage:
+			backgroundImg && backgroundType === "image"
+				? `url(${backgroundImg})`
+				: undefined,
+		backgroundPosition:
+			focalPoint && !hasParallax
+				? `${focalPoint.x * 100}% ${focalPoint.y * 100}%`
+				: undefined,
+		color: textClass ? undefined : customTextColor
+	};
+
+	function styles() {
+		if (window.innerWidth < 800) {
+			return innerStylesMobile;
+		} else {
+			return innerStyles;
+		}
+	}
 
 	return (
 		<div
@@ -134,7 +182,7 @@ function Save({ attributes }) {
 			data-columns={columns}
 			data-layout={layout}
 		>
-			<div className={classnames(innerClasses)} style={innerStyles}>
+			<div className={classnames(innerClasses)} style={styles()}>
 				{BackgroundVideo(attributes)}
 				<InnerBlocks.Content />
 			</div>

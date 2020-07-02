@@ -1,13 +1,13 @@
 {
 	"name": "coblocks",
-	"title": "CoBlocks",
-	"description": "CoBlocks is a suite of professional page building blocks for the WordPress Gutenberg block editor.",
-	"version": "2.0.2",
+	"title": "AnpsBlocks",
+	"description": "AnpsBlocks is a suite of professional page building blocks for the WordPress Gutenberg block editor.",
+	"version": "1.0.0",
 	"tested_up_to": "5.4",
-	"author": "GoDaddy",
+	"author": "AnpsThemes",
 	"license": "GPL-2.0",
 	"repository": "godaddy-wordpress/coblocks",
-	"homepage": "https://wordpress.org/plugins/coblocks/",
+	"homepage": "https://anpsthemes.com/",
 	"bugs": {
 		"url": "https://github.com/godaddy-wordpress/coblocks/issues"
 	},

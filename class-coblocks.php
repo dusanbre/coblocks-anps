@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Plugin Name: Anps Gutenberg Blocks
+ * Plugin Name: AnpsBlocks
  * Description: Anps gutenberg blocks plugin
  * Author: AnpsThemes
  * Author URI: https://www.anpsthemes.com
- * Version: 1.0.0
+ * Version: 3.0.0
  * Text Domain: anps
  * Domain Path: /languages
  * Tested up to: 5.4
@@ -21,7 +21,7 @@ define('ANPSBLOCKS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('ANPSBLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ANPSBLOCKS_PLUGIN_FILE', __FILE__);
 define('ANPSBLOCKS_PLUGIN_BASE', plugin_basename(__FILE__));
-define('ANPSBLOCKS_REVIEW_URL', 'https://wordpress.org/support/plugin/anpsblocks/reviews/?filter=5');
+define('ANPSBLOCKS_REVIEW_URL', 'https://anpsthemes.com/');
 
 if (!class_exists('AnpsBlocks')) :
 	/**
