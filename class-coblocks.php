@@ -100,16 +100,16 @@ if (!class_exists('AnpsBlocks')) :
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-block-assets.php';
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-register-blocks.php';
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-generated-styles.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-body-classes.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-body-classes.php';
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-form.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-font-loader.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-post-meta.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-google-map-block.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-accordion-ie-support.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-font-loader.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-post-meta.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-google-map-block.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-accordion-ie-support.php';
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-settings.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/get-dynamic-blocks.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-anpsblocks-event.php';
-			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-anpsblocks-ical.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/get-dynamic-blocks.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-anpsblocks-event.php';
+			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/ical-parser/class-anpsblocks-ical.php';
 
 			// Require the Gutenberg plugin for specific components.
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
