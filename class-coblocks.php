@@ -104,7 +104,7 @@ if (!class_exists('AnpsBlocks')) :
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-form.php';
 			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-font-loader.php';
 			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-post-meta.php';
-			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-google-map-block.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-google-map-block.php';
 			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-accordion-ie-support.php';
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-settings.php';
 			// require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/get-dynamic-blocks.php';
