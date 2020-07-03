@@ -174,7 +174,7 @@ function Save({ attributes }) {
 			return innerStyles;
 		}
 	}
-
+	console.log(styles());
 	return (
 		<div
 			className={classes}

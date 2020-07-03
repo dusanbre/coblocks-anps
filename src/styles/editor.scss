@@ -10,3 +10,8 @@
 // Legacy styling
 @import "legacy/margin-editor";
 @import "legacy/padding-editor";
+
+
+.wp-block {
+	max-width: 100%;
+}
