@@ -1,0 +1,23 @@
+.anps_list_editor_wrapper ul {
+	list-style-type: none !important;
+	padding-left: 0em !important;
+	margin-left: 0em !important;
+}
+
+.anps_list_inspector_controls {
+	display: flex;
+	justify-content: space-between;
+
+	div {
+		width: 100%;
+	}
+
+	button {
+		margin-top: 8%;
+	}
+}
+
+.anps_list_btn_add_item {
+	width: 100%;
+	justify-content: center;
+}

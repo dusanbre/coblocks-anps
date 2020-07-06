@@ -1,0 +1,14 @@
+{
+	"name": "anpsblock/list",
+	"category": "layout",
+	"attributes": {
+		"icon": {
+			"type": "string",
+			"default": "default"
+		},
+		"text": {
+			"type": "array",
+			"default": []
+		}
+	}
+}
