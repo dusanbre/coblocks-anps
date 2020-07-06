@@ -3,9 +3,6 @@
  */
 import { registerBlockType } from "@wordpress/blocks";
 
-// Register block category
-import "./utils/block-category";
-
 // Extensions
 import "./extensions/colors/inspector";
 import "./extensions/typography";
@@ -39,6 +36,7 @@ import * as map from "./blocks/map";
 import * as row from "./blocks/row";
 import * as alert from "./blocks/alert";
 import * as list from "./blocks/list";
+import * as button from "./blocks/button";
 
 /**
  * Function to register an individual block.
@@ -69,7 +67,9 @@ const registerBlock = block => {
  * Function to register blocks provided by CoBlocks.
  */
 export const registerCoBlocksBlocks = () => {
-	[column, events, eventItem, map, row, alert, list].forEach(registerBlock);
+	[column, events, eventItem, map, row, alert, list, button].forEach(
+		registerBlock
+	);
 };
 
 registerCoBlocksBlocks();

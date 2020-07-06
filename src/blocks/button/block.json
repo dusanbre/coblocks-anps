@@ -1,6 +1,6 @@
 {
 	"name": "anpsblocks/button",
-	"category": "anpsblocks",
+	"category": "anps",
 	"attributes": {
 		"text": {
 			"type": "string"

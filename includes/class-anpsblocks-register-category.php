@@ -62,8 +62,8 @@ class AnpsBlocks_Register_Category
             $categories,
             array(
                 array(
-                    'slug' => $this->slug,
-                    'title' => __('Anps Blocks', 'anpsblocks'),
+                    'slug' => "anps",
+                    'title' => __('Anps Blocks Bre', 'anpsblocks'),
                 ),
             )
         );

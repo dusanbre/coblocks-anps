@@ -1,6 +1,6 @@
 {
 	"name": "coblocks/map",
-	"category": "layout",
+	"category": "anps",
 	"attributes": {
 		"address": {
 			"type": "string"

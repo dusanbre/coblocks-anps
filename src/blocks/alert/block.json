@@ -1,6 +1,6 @@
 {
 	"name": "anpsblock/alert",
-	"category": "anpsblocks",
+	"category": "anps",
 	"attributes": {
 		"title": {
 			"type": "string"

@@ -1,6 +1,6 @@
 {
 	"name": "coblocks/event-item",
-	"category": "layout",
+	"category": "anps",
 	"attributes": {
 		"title": {
 			"type": "string",

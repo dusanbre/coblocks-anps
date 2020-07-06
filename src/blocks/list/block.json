@@ -1,6 +1,6 @@
 {
 	"name": "anpsblock/list",
-	"category": "layout",
+	"category": "anps",
 	"attributes": {
 		"icon": {
 			"type": "string",
