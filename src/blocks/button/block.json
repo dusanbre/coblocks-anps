@@ -1,0 +1,42 @@
+{
+	"name": "anpsblocks/button",
+	"category": "anpsblocks",
+	"attributes": {
+		"text": {
+			"type": "string"
+		},
+		"link": {
+			"type": "string"
+		},
+		"target": {
+			"type": "string",
+			"default": "_self"
+		},
+		"size": {
+			"type": "string",
+			"default": "small"
+		},
+		"style": {
+			"type": "string",
+			"default": "btn-normal"
+		},
+		"color": {
+			"type": "string"
+		},
+		"background": {
+			"type": "string"
+		},
+		"hoverColor": {
+			"type": "string"
+		},
+		"hoverBackground": {
+			"type": "string"
+		},
+		"icon": {
+			"type": "string"
+		},
+		"hoverStatus": {
+			"default": false
+		}
+	}
+}

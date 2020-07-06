@@ -17,7 +17,7 @@ import { supportsCollections } from "./block-helpers";
 const categories = [
 	{
 		slug: "coblocks-galleries",
-		title: __("Galleries", "coblocks")
+		title: __("Galleries", "anpsblocks")
 	},
 	...getCategories().filter(({ slug }) => slug !== "coblocks-galleries")
 ];
@@ -26,7 +26,7 @@ const categories = [
  * Function to register a block collection for our blocks.
  */
 if (supportsCollections()) {
-	registerBlockCollection("coblocks", {
+	registerBlockCollection("anpsblocks", {
 		title: "AnpsBlocks",
 		icon: brandAssets.categoryIcon
 	});

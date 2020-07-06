@@ -3,7 +3,6 @@
  */
 import edit from "./edit";
 import metadata from "./block.json";
-import save from "./save";
 import icons from "../../utils/icons/anps-icon.js";
 
 /**
@@ -22,9 +21,9 @@ const attributes = {
 
 const settings = {
 	/* translators: block name */
-	title: __("List", "anpsblocks"),
+	title: __("Button", "anpsblocks"),
 	/* translators: block description */
-	description: __("Anps list block", "anpsblocks"),
+	description: __("Anps button block", "anpsblocks"),
 	icon: icons.anps,
 	keywords: [
 		"anpsblocks",

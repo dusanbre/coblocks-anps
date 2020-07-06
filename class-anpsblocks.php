@@ -103,6 +103,7 @@ if (!class_exists('AnpsBlocks')) :
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-form.php';
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-google-map-block.php';
 			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-settings.php';
+			require_once ANPSBLOCKS_PLUGIN_DIR . 'includes/class-anpsblocks-register-category.php';
 
 
 			// Require the Gutenberg plugin for specific components.
@@ -167,12 +168,12 @@ if (!class_exists('AnpsBlocks')) :
 		 *
 		 * @access public
 		 */
-		public function block_localization()
-		{
-			if (function_exists('wp_set_script_translations')) {
-				wp_set_script_translations('anpsblocks-editor', 'anpsblocks', ANPSBLOCKS_PLUGIN_DIR . '/languages');
-			}
-		}
+		// public function block_localization()
+		// {
+		// 	if (function_exists('wp_set_script_translations')) {
+		// 		wp_set_script_translations('anpsblocks-editor', 'anpsblocks', ANPSBLOCKS_PLUGIN_DIR . '/languages');
+		// 	}
+		// }
 
 		/**
 		 * Is an AMP endpoint.
