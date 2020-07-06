@@ -1,0 +1,25 @@
+.anps_alert_editor_wrapper {
+	background-color: #252;
+	color: #fff;
+	padding: 20px;
+
+	.anps_alert_editor_controls {
+		display: flex;
+	}
+
+	.anps_alert_editeo_title {
+		margin: 5px;
+		font-size: 25px;
+	}
+
+	input {
+		margin: 5px;
+		width: 100%;
+	}
+
+	select {
+		margin: 5px;
+
+	}
+
+}

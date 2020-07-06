@@ -1,0 +1,12 @@
+{
+	"name": "anpsblock/alert",
+	"category": "layout",
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"selectInfo": {
+			"type": "string"
+		}
+	}
+}

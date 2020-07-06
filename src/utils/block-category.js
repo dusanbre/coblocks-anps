@@ -1,37 +1,41 @@
 /**
  * WordPress dependencies
  */
-import { getCategories, setCategories, registerBlockCollection } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
+import {
+	getCategories,
+	setCategories,
+	registerBlockCollection
+} from "@wordpress/blocks";
+import { __ } from "@wordpress/i18n";
 
 /**
  * Internal dependencies
  */
-import brandAssets from './brand-assets';
-import { supportsCollections } from './block-helpers';
+import brandAssets from "./brand-assets";
+import { supportsCollections } from "./block-helpers";
 
 const categories = [
 	{
-		slug: 'coblocks-galleries',
-		title: __( 'Galleries', 'coblocks' ),
+		slug: "coblocks-galleries",
+		title: __("Galleries", "coblocks")
 	},
-	...getCategories().filter( ( { slug } ) => slug !== 'coblocks-galleries' ),
+	...getCategories().filter(({ slug }) => slug !== "coblocks-galleries")
 ];
 
 /**
  * Function to register a block collection for our blocks.
  */
-if ( supportsCollections() ) {
-	registerBlockCollection( 'coblocks', {
-		title: 'CoBlocks',
-		icon: brandAssets.categoryIcon,
-	} );
+if (supportsCollections()) {
+	registerBlockCollection("coblocks", {
+		title: "AnpsBlocks",
+		icon: brandAssets.categoryIcon
+	});
 } else {
-	categories.unshift( {
-		slug: 'coblocks',
-		title: 'CoBlocks',
-		icon: brandAssets.categoryIcon,
-	}, );
+	categories.unshift({
+		slug: "anpsblocks",
+		title: "AnpsBlocks",
+		icon: brandAssets.categoryIcon
+	});
 }
 
-setCategories( categories );
+setCategories(categories);
