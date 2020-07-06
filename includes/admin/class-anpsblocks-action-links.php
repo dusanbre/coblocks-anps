@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Add links to CoBlocks on the plugins admin page.
+ * Add links to AnpsBlocks on the plugins admin page.
  *
- * @package CoBlocks
+ * @package AnpsBlocks
  */
 
 // Exit if accessed directly.
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 /**
  * Generates a link.
  */
-class CoBlocks_Action_Links
+class AnpsBlocks_Action_Links
 {
 
 	/**
@@ -42,7 +42,7 @@ class CoBlocks_Action_Links
 
 		if (ANPSBLOCKS_PLUGIN_BASE === $plugin_file) {
 			$row_meta = array(
-				'review' => '<a href="' . esc_url(ANPSBLOCKS_REVIEW_URL) . '" aria-label="' . esc_attr(__('Review CoBlocks on WordPress.org', 'anpsblocks')) . '" target="_blank">' . __('Leave a Review', 'anpsblocks') . '</a>',
+				'review' => '<a href="' . esc_url(ANPSBLOCKS_REVIEW_URL) . '" aria-label="' . esc_attr(__('Review AnpsBlocks on WordPress.org', 'anpsblocks')) . '" target="_blank">' . __('Leave a Review', 'anpsblocks') . '</a>',
 			);
 
 			$plugin_meta = array_merge($plugin_meta, $row_meta);
@@ -52,4 +52,4 @@ class CoBlocks_Action_Links
 	}
 }
 
-new CoBlocks_Action_Links();
+new AnpsBlocks_Action_Links();

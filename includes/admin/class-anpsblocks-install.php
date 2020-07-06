@@ -3,7 +3,7 @@
 /**
  * Run on plugin install.
  *
- * @package CoBlocks
+ * @package AnpsBlocks
  */
 
 // Exit if accessed directly.
@@ -12,9 +12,9 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * CoBlocks_Install Class
+ * AnpsBlocks_Install Class
  */
-class CoBlocks_Install
+class AnpsBlocks_Install
 {
 
 	/**
@@ -38,4 +38,4 @@ class CoBlocks_Install
 	}
 }
 
-return new CoBlocks_Install();
+return new AnpsBlocks_Install();

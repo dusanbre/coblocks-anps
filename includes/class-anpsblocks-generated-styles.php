@@ -3,7 +3,7 @@
 /**
  * Load generated styles for our blocks.
  *
- * @package CoBlocks
+ * @package AnpsBlocks
  */
 
 // Exit if accessed directly.
@@ -16,26 +16,26 @@ if (!defined('ABSPATH')) {
  *
  * @since 1.6.0
  */
-class CoBlocks_Generated_Styles
+class AnpsBlocks_Generated_Styles
 {
 
 
 	/**
 	 * This plugin's instance.
 	 *
-	 * @var CoBlocks_Generated_Styles
+	 * @var AnpsBlocks_Generated_Styles
 	 */
 	private static $instance;
 
 	/**
 	 * Registers the plugin.
 	 *
-	 * @return CoBlocks_Generated_Styles
+	 * @return AnpsBlocks_Generated_Styles
 	 */
 	public static function register()
 	{
 		if (null === self::$instance) {
-			self::$instance = new CoBlocks_Generated_Styles();
+			self::$instance = new AnpsBlocks_Generated_Styles();
 		}
 
 		return self::$instance;
@@ -194,4 +194,4 @@ class CoBlocks_Generated_Styles
 	}
 }
 
-CoBlocks_Generated_Styles::register();
+AnpsBlocks_Generated_Styles::register();

@@ -3,7 +3,7 @@
 /**
  * Register blocks.
  *
- * @package CoBlocks
+ * @package AnpsBlocks
  */
 
 // Exit if accessed directly.
@@ -16,26 +16,26 @@ if (!defined('ABSPATH')) {
  *
  * @since 1.6.0
  */
-class CoBlocks_Register_Blocks
+class AnpsBlocks_Register_Blocks
 {
 
 
 	/**
 	 * This plugin's instance.
 	 *
-	 * @var CoBlocks_Register_Blocks
+	 * @var AnpsBlocks_Register_Blocks
 	 */
 	private static $instance;
 
 	/**
 	 * Registers the plugin.
 	 *
-	 * @return CoBlocks_Register_Blocks
+	 * @return AnpsBlocks_Register_Blocks
 	 */
 	public static function register()
 	{
 		if (null === self::$instance) {
-			self::$instance = new CoBlocks_Register_Blocks();
+			self::$instance = new AnpsBlocks_Register_Blocks();
 		}
 
 		return self::$instance;
@@ -165,4 +165,4 @@ class CoBlocks_Register_Blocks
 	}
 }
 
-CoBlocks_Register_Blocks::register();
+AnpsBlocks_Register_Blocks::register();

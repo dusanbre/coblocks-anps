@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
  *
  * @since 2.0.0
  */
-class CoBlocks_Form
+class AnpsBlocks_Form
 {
 
 	/**
@@ -119,7 +119,7 @@ class CoBlocks_Form
 
 			wp_enqueue_script(
 				'anpsblocks-google-recaptcha',
-				CoBlocks()->asset_source('js') . 'anpsblocks-google-recaptcha.js',
+				AnpsBlocks()->asset_source('js') . 'anpsblocks-google-recaptcha.js',
 				array('jquery', 'google-recaptcha'),
 				ANPSBLOCKS_VERSION,
 				true
@@ -401,7 +401,7 @@ class CoBlocks_Form
 
 		wp_enqueue_script(
 			'anpsblocks-datepicker',
-			CoBlocks()->asset_source('js') . 'anpsblocks-datepicker.js',
+			AnpsBlocks()->asset_source('js') . 'anpsblocks-datepicker.js',
 			array('jquery', 'jquery-ui-datepicker'),
 			ANPSBLOCKS_VERSION,
 			true
@@ -837,7 +837,7 @@ class CoBlocks_Form
 		do_action('anpsblocks_before_form_submit', $_POST, $atts);
 
 		/**
-		 * Filter to disable the CoBlocks form emails.
+		 * Filter to disable the AnpsBlocks form emails.
 		 *
 		 * @param bool false Whether or not the emails should be disabled.
 		 */
@@ -1110,4 +1110,4 @@ class CoBlocks_Form
 	}
 }
 
-new CoBlocks_Form();
+new AnpsBlocks_Form();

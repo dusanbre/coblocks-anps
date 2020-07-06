@@ -183,7 +183,7 @@ class AnpsBlocks_Block_Assets
 		 */
 		$bundled_icons_enabled = (bool) apply_filters('anpsblocks_bundled_icons_enabled', true);
 
-		$form_subject = (new CoBlocks_Form())->default_subject();
+		$form_subject = (new AnpsBlocks_Form())->default_subject();
 
 		wp_localize_script(
 			'anpsblocks-editor',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register CoBlocks Settings
+ * Register AnpsBlocks Settings
  *
  * @package   @@pkg.title
  * @author    @@pkg.author
@@ -19,24 +19,24 @@ if (!defined('ABSPATH')) {
  *
  * @since 2.0.0
  */
-class CoBlocks_Settings
+class AnpsBlocks_Settings
 {
 	/**
 	 * This plugin's instance.
 	 *
-	 * @var CoBlocks_Settings
+	 * @var AnpsBlocks_Settings
 	 */
 	private static $instance;
 
 	/**
 	 * Registers the plugin.
 	 *
-	 * @return CoBlocks_Settings
+	 * @return AnpsBlocks_Settings
 	 */
 	public static function register()
 	{
 		if (null === self::$instance) {
-			self::$instance = new CoBlocks_Settings();
+			self::$instance = new AnpsBlocks_Settings();
 		}
 
 		return self::$instance;
@@ -53,7 +53,7 @@ class CoBlocks_Settings
 	}
 
 	/**
-	 * Localize CoBlock Settings Status CoBlocks settings.
+	 * Localize CoBlock Settings Status AnpsBlocks settings.
 	 *
 	 * @access public
 	 */
@@ -70,7 +70,7 @@ class CoBlocks_Settings
 	}
 
 	/**
-	 * Propagate CoBlocks settings to editor.
+	 * Propagate AnpsBlocks settings to editor.
 	 *
 	 * @access public
 	 */
@@ -94,7 +94,7 @@ class CoBlocks_Settings
 	}
 
 	/**
-	 * Register CoBlocks settings.
+	 * Register AnpsBlocks settings.
 	 *
 	 * @access public
 	 */
@@ -162,4 +162,4 @@ class CoBlocks_Settings
 	}
 }
 
-CoBlocks_Settings::register();
+AnpsBlocks_Settings::register();

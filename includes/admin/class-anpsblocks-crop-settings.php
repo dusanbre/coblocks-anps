@@ -3,7 +3,7 @@
 /**
  * Crop settings extension.
  *
- * @package CoBlocks
+ * @package AnpsBlocks
  */
 
 // Exit if accessed directly.
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 /**
  * Crop Settings Class
  */
-class CoBlocks_Crop_Settings
+class AnpsBlocks_Crop_Settings
 {
 
 	const ORIGINAL_META_KEY = 'original-image-id';
@@ -24,27 +24,27 @@ class CoBlocks_Crop_Settings
 	/**
 	 * This class's instance.
 	 *
-	 * @var CoBlocks
+	 * @var AnpsBlocks
 	 * @since 1.14.0
 	 */
 	private static $instance;
 
 	/**
-	 * Main CoBlocks_Crop_Settings Instance.
+	 * Main AnpsBlocks_Crop_Settings Instance.
 	 *
-	 * Insures that only one instance of CoBlocks_Crop_Settings exists in memory at any one
+	 * Insures that only one instance of AnpsBlocks_Crop_Settings exists in memory at any one
 	 * time. Also prevents needing to define globals all over the place.
 	 *
 	 * @since 1.14.0
 	 * @static
-	 * @return object|CoBlocks_Crop_Settings The one true CoBlocks_Crop_Settings
+	 * @return object|AnpsBlocks_Crop_Settings The one true AnpsBlocks_Crop_Settings
 	 */
 	public static function instance()
 	{
 
 		if (empty(self::$instance)) {
 
-			self::$instance = new CoBlocks_Crop_Settings();
+			self::$instance = new AnpsBlocks_Crop_Settings();
 		}
 
 		return self::$instance;
@@ -277,4 +277,4 @@ class CoBlocks_Crop_Settings
 	}
 }
 
-CoBlocks_Crop_Settings::instance()->register_endpoints();
+AnpsBlocks_Crop_Settings::instance()->register_endpoints();
