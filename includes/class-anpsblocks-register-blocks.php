@@ -10,6 +10,10 @@
 if (!defined('ABSPATH')) {
 	exit;
 }
+
+//require files for render on frontend
+require_once(ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/button/render.php');
+
 /**
  * Load registration for our blocks.
  *
@@ -79,6 +83,15 @@ class AnpsBlocks_Register_Blocks
 				'editor_script' => $slug . '-editor',
 				'editor_style'  => $slug . '-editor',
 				'style'         => $slug . '-frontend',
+			)
+		);
+		register_block_type(
+			$slug . '/button',
+			array(
+				'editor_script' => $slug . '-editor',
+				'editor_style'  => $slug . '-editor',
+				'style'         => $slug . '-frontend',
+				'render_callback' => 'anps_render_button'
 			)
 		);
 	}

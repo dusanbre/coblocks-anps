@@ -7,9 +7,11 @@ import {
 	Button,
 	ColorPicker
 } from "@wordpress/components";
+import { Fragment } from "@wordpress/element";
+import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 
-export default function edit() {
+export default function edit({ attributes, setAttributes }) {
 	function iconHandler(e) {
 		setAttributes({
 			icon: e.target.value

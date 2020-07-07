@@ -1,7 +1,7 @@
 <?php
 
 
-function anps_cb_guten_button($attributes)
+function anps_render_button($attributes)
 {
 
 

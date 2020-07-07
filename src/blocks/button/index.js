@@ -2,6 +2,7 @@
  * Internal dependencies
  */
 import edit from "./edit";
+import save from "./save";
 import metadata from "./block.json";
 import icons from "../../utils/icons/anps-icon.js";
 
