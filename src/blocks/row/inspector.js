@@ -123,7 +123,6 @@ class Inspector extends Component {
 				);
 			}
 		};
-		console.log(this.props);
 		return (
 			<Fragment>
 				<InspectorControls>

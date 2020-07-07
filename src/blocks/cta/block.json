@@ -1,0 +1,26 @@
+{
+	"name": "anpsblocks/cta",
+	"category": "anps",
+	"attributes": {
+		"text": {
+			"type": "string"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"url": {
+			"type": "string"
+		},
+		"buttonText": {
+			"type": "string"
+		},
+		"buttonType": {
+			"type": "string",
+			"default": "btn-normal"
+		},
+		"target": {
+			"type": "string",
+			"default": "_self"
+		}
+	}
+}
