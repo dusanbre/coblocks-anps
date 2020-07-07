@@ -1,0 +1,19 @@
+.anps_timeline_remove_item,
+.anps_timeline_btn_add_item {
+	width: 100%;
+	justify-content: center;
+}
+
+.anps_timeline_remove_item {
+	border: 1px solid red;
+	color: red;
+	background: #f3f5f6;
+
+	&:hover {
+		border: 1px solid rgb(211, 0, 0);
+		color: rgb(211, 0, 0) !important;
+		box-shadow: none !important;
+		background: #f1f1f1 !important;
+
+	}
+}

@@ -50,6 +50,7 @@ class AnpsBlocks_Settings
 		add_action('init', array($this, 'register_settings'));
 		add_action('init', array($this, 'anpsblocks_settings_assets'));
 		add_action('wp_loaded', array($this, 'anpsblocks_feature_propagation'));
+		add_action('enqueue_block_editor_assets', array($this, 'anps_add_theme_styles'));
 	}
 
 	/**
@@ -158,6 +159,33 @@ class AnpsBlocks_Settings
 				'show_in_rest'      => true,
 				'default'           => true,
 			)
+		);
+	}
+
+	/**
+	 * anps_add_theme_styles
+	 *
+	 * @return void
+	 */
+	function anps_add_theme_styles()
+	{
+		wp_enqueue_style(
+			"anps-components",
+			get_template_directory_uri()  . '/css/components.css',
+			array('wp-edit-blocks'),
+			null
+		);
+		wp_enqueue_style(
+			"anps-bootstrap",
+			get_template_directory_uri()  . '/css/bootstrap.css',
+			array('wp-edit-blocks'),
+			null
+		);
+		wp_enqueue_style(
+			"anps-core",
+			get_template_directory_uri()  . '/css/core.css',
+			array('wp-edit-blocks'),
+			null
 		);
 	}
 }

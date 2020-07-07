@@ -5,7 +5,6 @@ import edit from "./edit";
 import save from "./save";
 import metadata from "./block.json";
 import icons from "../../utils/icons/anps-icon.js";
-
 /**
  * WordPress dependencies
  */
@@ -22,18 +21,18 @@ const attributes = {
 
 const settings = {
 	/* translators: block name */
-	title: __("Button", "anpsblocks"),
+	title: __("Timeline", "anpsblocks"),
 	/* translators: block description */
-	description: __("Anps button block", "anpsblocks"),
+	description: __("Anps timeline block", "anpsblocks"),
 	icon: icons.anps,
 	keywords: [
 		"anpsblocks",
 		/* translators: block keyword */
-		__("button", "anpsblocks"),
+		__("timeline", "anpsblocks"),
 		/* translators: block keyword */
 		__("anps", "anpsblocks"),
 		/* translators: block keyword */
-		__("btn", "anpsblocks")
+		__("block", "anpsblocks")
 	],
 	supports: {
 		align: ["wide", "full"]

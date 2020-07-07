@@ -1,27 +1,19 @@
 import iconsData from "../../utils/icons/icons.json";
-import {
-	TextControl,
-	PanelBody,
-	SelectControl,
-	Dropdown,
-	Button,
-	ColorPicker
-} from "@wordpress/components";
+import { TextControl, PanelBody, SelectControl } from "@wordpress/components";
 import { Fragment } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { InspectorControls } from "@wordpress/block-editor";
+import { InspectorControls, PanelColorSettings } from "@wordpress/block-editor";
 
 export default function edit({ attributes, setAttributes }) {
-	function iconHandler(e) {
-		setAttributes({
-			icon: e.target.value
-		});
-	}
-
 	let iconClass;
 	if (attributes.icon) {
 		iconClass = <i className={attributes.icon}></i>;
 	}
+
+	//
+	const iconsList = iconsData.map(icon => {
+		return { label: icon.l, value: "fa " + icon.c };
+	});
 
 	let styleCss;
 	if (!attributes.link) {
@@ -52,16 +44,23 @@ export default function edit({ attributes, setAttributes }) {
 				target={attributes.target}
 				className={"btn " + attributes.style + " " + attributes.size}
 				style={{
-					color: attributes.color,
-					backgroundColor: attributes.background
+					color:
+						attributes.hoverStatus == true
+							? attributes.hoverColor
+							: attributes.color,
+					backgroundColor:
+						attributes.hoverStatus == true
+							? attributes.hoverBackground
+							: attributes.background
 				}}
+				onMouseEnter={() => setAttributes({ hoverStatus: true })}
+				onMouseLeave={() => setAttributes({ hoverStatus: false })}
 			>
 				{iconClass}
 				{attributes.text}
 			</a>
 		);
 	}
-
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -110,114 +109,49 @@ export default function edit({ attributes, setAttributes }) {
 							setAttributes({ style });
 						}}
 					/>
-					<Dropdown
-						position="bottom right"
-						renderToggle={({ isOpen, onToggle }) => (
-							<Button isPrimary onClick={onToggle} aria-expanded={isOpen}>
-								Select Icon
-							</Button>
-						)}
-						renderContent={() => (
-							<select value={attributes.icon} onChange={iconHandler}>
-								{iconsData.map(icon => {
-									return <option value={"fa " + icon.c}>{icon.l}</option>;
-								})}
-							</select>
-						)}
+					<SelectControl
+						label={__("Icon Picker")}
+						value={attributes.icon}
+						options={iconsList}
+						onChange={value => {
+							setAttributes({ icon: value });
+						}}
 					/>
 				</PanelBody>
-				<PanelBody
-					title="Button Colors"
+				<PanelColorSettings
+					title={__("Button Colors", "anpsblocks")}
 					initialOpen={false}
-					className="anps_colors_panel_inspector"
-				>
-					<Dropdown
-						position="bottom right"
-						renderToggle={({ isOpen, onToggle }) => (
-							<Button
-								isPrimary
-								onClick={onToggle}
-								aria-expanded={isOpen}
-								style={{ backgroundColor: attributes.color }}
-							>
-								Text Color
-							</Button>
-						)}
-						renderContent={() => (
-							<ColorPicker
-								color={attributes.color}
-								onChangeComplete={value => setAttributes({ color: value.hex })}
-								disableAlpha
-							/>
-						)}
-					/>
-					<Dropdown
-						position="bottom right"
-						renderToggle={({ isOpen, onToggle }) => (
-							<Button
-								isPrimary
-								onClick={onToggle}
-								aria-expanded={isOpen}
-								style={{ backgroundColor: attributes.background }}
-							>
-								Background Color
-							</Button>
-						)}
-						renderContent={() => (
-							<ColorPicker
-								color={attributes.background}
-								onChangeComplete={value =>
-									setAttributes({ background: value.hex })
-								}
-								disableAlpha
-							/>
-						)}
-					/>
-					<Dropdown
-						position="bottom right"
-						renderToggle={({ isOpen, onToggle }) => (
-							<Button
-								isPrimary
-								onClick={onToggle}
-								aria-expanded={isOpen}
-								style={{ backgroundColor: attributes.hoverColor }}
-							>
-								Hover Color
-							</Button>
-						)}
-						renderContent={() => (
-							<ColorPicker
-								color={attributes.hoverColor}
-								onChangeComplete={value =>
-									setAttributes({ hoverColor: value.hex })
-								}
-								disableAlpha
-							/>
-						)}
-					/>
-					<Dropdown
-						position="bottom right"
-						renderToggle={({ isOpen, onToggle }) => (
-							<Button
-								isPrimary
-								onClick={onToggle}
-								aria-expanded={isOpen}
-								style={{ backgroundColor: attributes.hoverBackground }}
-							>
-								Hover Background
-							</Button>
-						)}
-						renderContent={() => (
-							<ColorPicker
-								color={attributes.hoverBackground}
-								onChangeComplete={value =>
-									setAttributes({ hoverBackground: value.hex })
-								}
-								disableAlpha
-							/>
-						)}
-					/>
-				</PanelBody>
+					colorSettings={[
+						{
+							value: attributes.color,
+							onChange: nextColor => {
+								setAttributes({ color: nextColor });
+							},
+							label: __("Color", "anpsblocks")
+						},
+						{
+							value: attributes.background,
+							onChange: nextBackground => {
+								setAttributes({ background: nextBackground });
+							},
+							label: __("Background", "anpsblocks")
+						},
+						{
+							value: attributes.hoverColor,
+							onChange: nextHoverColor => {
+								setAttributes({ hoverColor: nextHoverColor });
+							},
+							label: __("Hover Color", "anpsblocks")
+						},
+						{
+							value: attributes.hoverBackground,
+							onChange: nextHoverBackground => {
+								setAttributes({ hoverBackground: nextHoverBackground });
+							},
+							label: __("Hover Background", "anpsblocks")
+						}
+					]}
+				></PanelColorSettings>
 			</InspectorControls>
 			<div>{styleCss}</div>
 		</Fragment>

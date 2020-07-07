@@ -37,6 +37,7 @@ import * as row from "./blocks/row";
 import * as alert from "./blocks/alert";
 import * as list from "./blocks/list";
 import * as button from "./blocks/button";
+import * as timeline from "./blocks/timeline";
 
 /**
  * Function to register an individual block.
@@ -67,7 +68,7 @@ const registerBlock = block => {
  * Function to register blocks provided by CoBlocks.
  */
 export const registerCoBlocksBlocks = () => {
-	[column, events, eventItem, map, row, alert, list, button].forEach(
+	[column, events, eventItem, map, row, alert, list, button, timeline].forEach(
 		registerBlock
 	);
 };

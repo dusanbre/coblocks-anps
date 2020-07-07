@@ -1,45 +1,48 @@
 /**
  * External dependencies
  */
-import map from 'lodash/map';
-import classnames from 'classnames';
+import map from "lodash/map";
+import classnames from "classnames";
 
 /**
  * Internal dependencies
  */
-import { layoutOptions } from './utilities';
-import applyWithColors from './colors';
-import { BackgroundPanel } from '../../components/background';
-import DimensionsControl from '../../components/dimensions-control';
-import OptionSelectorControl from '../../components/option-selector-control';
-import gutterOptions from '../../utils/gutter-options';
+import { layoutOptions } from "./utilities";
+import applyWithColors from "./colors";
+import { BackgroundPanel } from "../../components/background";
+import DimensionsControl from "../../components/dimensions-control";
+import OptionSelectorControl from "../../components/option-selector-control";
+import gutterOptions from "../../utils/gutter-options";
 
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
-import { Component, Fragment } from '@wordpress/element';
-import { compose } from '@wordpress/compose';
-import { InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
-import { PanelBody, withFallbackStyles } from '@wordpress/components';
+import { __ } from "@wordpress/i18n";
+import { Component, Fragment } from "@wordpress/element";
+import { compose } from "@wordpress/compose";
+import { InspectorControls, PanelColorSettings } from "@wordpress/block-editor";
+import { PanelBody, withFallbackStyles } from "@wordpress/components";
 
 /**
  * Fallback styles
  */
 const { getComputedStyle } = window;
 
-const FallbackStyles = withFallbackStyles( ( node, ownProps ) => {
+const FallbackStyles = withFallbackStyles((node, ownProps) => {
 	const { backgroundColor } = ownProps.attributes;
 
-	const editableNode = node.querySelector( '[contenteditable="true"]' );
+	const editableNode = node.querySelector('[contenteditable="true"]');
 
 	//verify if editableNode is available, before using getComputedStyle.
-	const computedStyles = editableNode ? getComputedStyle( editableNode ) : null;
+	const computedStyles = editableNode ? getComputedStyle(editableNode) : null;
 
 	return {
-		fallbackBackgroundColor: backgroundColor || ! computedStyles ? undefined : computedStyles.backgroundColor,
+		fallbackBackgroundColor:
+			backgroundColor || !computedStyles
+				? undefined
+				: computedStyles.backgroundColor
 	};
-} );
+});
 
 /**
  * Inspector controls
@@ -55,7 +58,7 @@ class Inspector extends Component {
 			setTextColor,
 			textColor,
 			updateBlockAttributes,
-			getBlocksByClientId,
+			getBlocksByClientId
 		} = this.props;
 
 		const {
@@ -96,162 +99,178 @@ class Inspector extends Component {
 			paddingSyncUnitsTablet,
 			paddingSyncUnitsMobile,
 			paddingUnit,
-			hasMarginControl,
+			hasMarginControl
 		} = attributes;
 
 		let selectedRows = 1;
 
-		if ( columns ) {
-			selectedRows = parseInt( columns.toString().split( '-' ) );
+		if (columns) {
+			selectedRows = parseInt(columns.toString().split("-"));
 		}
 
-		const handleEvent = ( key ) => {
-			const selectedWidth = key.toString().split( '-' );
-			const children = getBlocksByClientId( clientId );
-			setAttributes( {
-				layout: key,
-			} );
+		const handleEvent = key => {
+			const selectedWidth = key.toString().split("-");
+			const children = getBlocksByClientId(clientId);
+			setAttributes({
+				layout: key
+			});
 
-			if ( typeof children[ 0 ].innerBlocks !== 'undefined' ) {
-				map( children[ 0 ].innerBlocks, ( blockProps, index ) => (
-					updateBlockAttributes( blockProps.clientId, { width: selectedWidth[ index ] } )
-				) );
+			if (typeof children[0].innerBlocks !== "undefined") {
+				map(children[0].innerBlocks, (blockProps, index) =>
+					updateBlockAttributes(blockProps.clientId, {
+						width: selectedWidth[index]
+					})
+				);
 			}
 		};
-
+		console.log(this.props);
 		return (
 			<Fragment>
 				<InspectorControls>
-					{ ( columns && selectedRows >= 1 ) &&
-					<Fragment>
-						{ layout &&
+					{columns && selectedRows >= 1 && (
 						<Fragment>
-							{ selectedRows > 1 &&
-								<PanelBody title={ __( 'Styles', 'coblocks' ) } initialOpen={ false }>
-									<div className={ classnames(
-										'block-editor-block-styles',
-										'coblocks-editor-block-styles',
-									) } >
-										{ map( layoutOptions[ selectedRows ], ( { name, key, icon } ) => (
-											<div
-												key={ `style-${ name }` }
-												className={ classnames(
-													'block-editor-block-styles__item',
-													{ 'is-active': layout === key },
-												) }
-												onClick={ () => handleEvent( key ) }
-												onKeyPress={ () => handleEvent( key ) }
-												role="button"
-												tabIndex="0"
-												aria-label={ name }
-											>
-												<div className="block-editor-block-styles__item-preview">
-													{ icon }
-												</div>
-											</div>
-										) ) }
-									</div>
-								</PanelBody>
-							}
-							{ layout &&
+							{layout && (
 								<Fragment>
-									<PanelBody title={ __( 'Row settings', 'coblocks' ) }>
-										{ selectedRows >= 2 && <OptionSelectorControl
-											label={ __( 'Gutter', 'coblocks' ) }
-											currentOption={ gutter }
-											options={ gutterOptions }
-											onChange={ ( newGutter ) => setAttributes( { gutter: newGutter } ) }
-										/> }
-										<DimensionsControl { ...this.props }
-											type={ 'padding' }
-											label={ __( 'Padding', 'coblocks' ) }
-											help={ __( 'Space inside of the container.', 'coblocks' ) }
-											valueTop={ paddingTop }
-											valueRight={ paddingRight }
-											valueBottom={ paddingBottom }
-											valueLeft={ paddingLeft }
-											valueTopTablet={ paddingTopTablet }
-											valueRightTablet={ paddingRightTablet }
-											valueBottomTablet={ paddingBottomTablet }
-											valueLeftTablet={ paddingLeftTablet }
-											valueTopMobile={ paddingTopMobile }
-											valueRightMobile={ paddingRightMobile }
-											valueBottomMobile={ paddingBottomMobile }
-											valueLeftMobile={ paddingLeftMobile }
-											unit={ paddingUnit }
-											syncUnits={ paddingSyncUnits }
-											syncUnitsTablet={ paddingSyncUnitsTablet }
-											syncUnitsMobile={ paddingSyncUnitsMobile }
-											dimensionSize={ paddingSize }
-										/>
-										{ hasMarginControl &&
-											<DimensionsControl { ...this.props }
-												type={ 'margin' }
-												label={ __( 'Margin', 'coblocks' ) }
-												help={ __( 'Space around the container.', 'coblocks' ) }
-												valueTop={ marginTop }
-												valueRight={ marginRight }
-												valueBottom={ marginBottom }
-												valueLeft={ marginLeft }
-												valueTopTablet={ marginTopTablet }
-												valueRightTablet={ marginRightTablet }
-												valueBottomTablet={ marginBottomTablet }
-												valueLeftTablet={ marginLeftTablet }
-												valueTopMobile={ marginTopMobile }
-												valueRightMobile={ marginRightMobile }
-												valueBottomMobile={ marginBottomMobile }
-												valueLeftMobile={ marginLeftMobile }
-												unit={ marginUnit }
-												syncUnits={ marginSyncUnits }
-												syncUnitsTablet={ marginSyncUnitsTablet }
-												syncUnitsMobile={ marginSyncUnitsMobile }
-												dimensionSize={ marginSize }
-											/>
-										}
-									</PanelBody>
-									<PanelColorSettings
-										title={ __( 'Color settings', 'coblocks' ) }
-										initialOpen={ false }
-										colorSettings={ [
-											{
-												value: backgroundColor.color,
-												onChange: ( nextBackgroundColor ) => {
-													setBackgroundColor( nextBackgroundColor );
+									{selectedRows > 1 && (
+										<PanelBody
+											title={__("Styles", "anpsblocks")}
+											initialOpen={false}
+										>
+											<div
+												className={classnames(
+													"block-editor-block-styles",
+													"anpsblocks-editor-block-styles"
+												)}
+											>
+												{map(
+													layoutOptions[selectedRows],
+													({ name, key, icon }) => (
+														<div
+															key={`style-${name}`}
+															className={classnames(
+																"block-editor-block-styles__item",
+																{ "is-active": layout === key }
+															)}
+															onClick={() => handleEvent(key)}
+															onKeyPress={() => handleEvent(key)}
+															role="button"
+															tabIndex="0"
+															aria-label={name}
+														>
+															<div className="block-editor-block-styles__item-preview">
+																{icon}
+															</div>
+														</div>
+													)
+												)}
+											</div>
+										</PanelBody>
+									)}
+									{layout && (
+										<Fragment>
+											<PanelBody title={__("Row settings", "anpsblocks")}>
+												{selectedRows >= 2 && (
+													<OptionSelectorControl
+														label={__("Gutter", "anpsblocks")}
+														currentOption={gutter}
+														options={gutterOptions}
+														onChange={newGutter =>
+															setAttributes({ gutter: newGutter })
+														}
+													/>
+												)}
+												<DimensionsControl
+													{...this.props}
+													type={"padding"}
+													label={__("Padding", "anpsblocks")}
+													help={__(
+														"Space inside of the container.",
+														"anpsblocks"
+													)}
+													valueTop={paddingTop}
+													valueRight={paddingRight}
+													valueBottom={paddingBottom}
+													valueLeft={paddingLeft}
+													valueTopTablet={paddingTopTablet}
+													valueRightTablet={paddingRightTablet}
+													valueBottomTablet={paddingBottomTablet}
+													valueLeftTablet={paddingLeftTablet}
+													valueTopMobile={paddingTopMobile}
+													valueRightMobile={paddingRightMobile}
+													valueBottomMobile={paddingBottomMobile}
+													valueLeftMobile={paddingLeftMobile}
+													unit={paddingUnit}
+													syncUnits={paddingSyncUnits}
+													syncUnitsTablet={paddingSyncUnitsTablet}
+													syncUnitsMobile={paddingSyncUnitsMobile}
+													dimensionSize={paddingSize}
+												/>
+												{hasMarginControl && (
+													<DimensionsControl
+														{...this.props}
+														type={"margin"}
+														label={__("Margin", "anpsblocks")}
+														help={__(
+															"Space around the container.",
+															"anpsblocks"
+														)}
+														valueTop={marginTop}
+														valueRight={marginRight}
+														valueBottom={marginBottom}
+														valueLeft={marginLeft}
+														valueTopTablet={marginTopTablet}
+														valueRightTablet={marginRightTablet}
+														valueBottomTablet={marginBottomTablet}
+														valueLeftTablet={marginLeftTablet}
+														valueTopMobile={marginTopMobile}
+														valueRightMobile={marginRightMobile}
+														valueBottomMobile={marginBottomMobile}
+														valueLeftMobile={marginLeftMobile}
+														unit={marginUnit}
+														syncUnits={marginSyncUnits}
+														syncUnitsTablet={marginSyncUnitsTablet}
+														syncUnitsMobile={marginSyncUnitsMobile}
+														dimensionSize={marginSize}
+													/>
+												)}
+											</PanelBody>
+											<PanelColorSettings
+												title={__("Color settings", "anpsblocks")}
+												initialOpen={false}
+												colorSettings={[
+													{
+														value: backgroundColor.color,
+														onChange: nextBackgroundColor => {
+															setBackgroundColor(nextBackgroundColor);
 
-													if ( ! paddingSize || paddingSize === 'no' ) {
-														setAttributes( { paddingSize: 'medium' } );
-													}
+															if (!paddingSize || paddingSize === "no") {
+																setAttributes({ paddingSize: "medium" });
+															}
 
-													if ( ! nextBackgroundColor ) {
-														setAttributes( { paddingSize: 'no' } );
+															if (!nextBackgroundColor) {
+																setAttributes({ paddingSize: "no" });
+															}
+														},
+														label: __("Background color", "anpsblocks")
+													},
+													{
+														value: textColor.color,
+														onChange: setTextColor,
+														label: __("Text color", "anpsblocks")
 													}
-												},
-												label: __( 'Background color', 'coblocks' ),
-											},
-											{
-												value: textColor.color,
-												onChange: setTextColor,
-												label: __( 'Text color', 'coblocks' ),
-											},
-										] }
-									>
-									</PanelColorSettings>
-									<BackgroundPanel { ...this.props }
-										hasOverlay={ true }
-									/>
+												]}
+											></PanelColorSettings>
+											<BackgroundPanel {...this.props} hasOverlay={true} />
+										</Fragment>
+									)}
 								</Fragment>
-							}
+							)}
 						</Fragment>
-						}
-					</Fragment>
-					}
+					)}
 				</InspectorControls>
 			</Fragment>
 		);
 	}
 }
 
-export default compose( [
-	applyWithColors,
-	FallbackStyles,
-] )( Inspector );
+export default compose([applyWithColors, FallbackStyles])(Inspector);

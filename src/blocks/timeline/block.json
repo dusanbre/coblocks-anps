@@ -1,0 +1,10 @@
+{
+	"name": "anpsblock/timeline",
+	"category": "anps",
+	"attributes": {
+		"text": {
+			"type": "array",
+			"default": []
+		}
+	}
+}
