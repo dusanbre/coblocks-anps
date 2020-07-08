@@ -5,16 +5,16 @@ import { __ } from "@wordpress/i18n";
 import { InspectorControls, PanelColorSettings } from "@wordpress/block-editor";
 
 export default function edit({ attributes, setAttributes }) {
+	//icon class
 	let iconClass;
 	if (attributes.icon) {
 		iconClass = <i className={attributes.icon}></i>;
 	}
 
-	//
 	const iconsList = iconsData.map(icon => {
 		return { label: icon.l, value: "fa " + icon.c };
 	});
-
+	
 	let styleCss;
 	if (!attributes.link) {
 		styleCss = (

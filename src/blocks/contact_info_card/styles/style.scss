@@ -1,0 +1,23 @@
+.anps__row-full {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw !important;
+	margin-right: -50vw !important;
+	height: 100%;
+}
+
+.anps_row-wide {
+	position: relative;
+}
+
+.anps__row-full-width {
+	width: 100vw;
+	position: absolute;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw !important;
+	margin-right: -50vw !important;
+	height: 100%;
+}

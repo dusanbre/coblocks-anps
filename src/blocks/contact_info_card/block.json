@@ -1,0 +1,15 @@
+{
+	"name": "anpsblocks/contact-info-card",
+	"category": "anps",
+	"attributes": {
+		"num_row": {
+			"type": "string",
+			"default": "col-md-4"
+		},
+		"text": {
+			"type": "array",
+			"default": []
+		}
+
+	}
+}

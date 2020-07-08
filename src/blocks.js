@@ -39,6 +39,7 @@ import * as list from "./blocks/list";
 import * as button from "./blocks/button";
 import * as timeline from "./blocks/timeline";
 import * as cta from "./blocks/cta";
+import * as cic from "./blocks/contact_info_card";
 
 /**
  * Function to register an individual block.
@@ -79,7 +80,8 @@ export const registerCoBlocksBlocks = () => {
 		list,
 		button,
 		timeline,
-		cta
+		cta,
+		cic
 	].forEach(registerBlock);
 };
 
