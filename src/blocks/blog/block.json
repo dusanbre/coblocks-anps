@@ -1,0 +1,37 @@
+{
+	"name": "anpsblocks/blog",
+	"category": "anps",
+	"attributes": {
+		"blogCategory": {
+			"type": "object"
+		},
+		"selectedCategory": {
+			"type": "string"
+		},
+		"postPerPage": {
+			"type": "string",
+			"default": "10"
+		},
+		"orderby": {
+			"type": "string",
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": "asc"
+		},
+		"columns": {
+			"type": "string",
+			"default": "1"
+		},
+		"posts": {
+			"type": "object"
+		},
+		"isLoadedCat": {
+			"default": false
+		},
+		"isLoadedPost": {
+			"default": false
+		}
+	}
+}
