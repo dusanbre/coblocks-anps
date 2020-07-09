@@ -4,16 +4,18 @@ import { useState, Fragment } from "@wordpress/element";
 
 export default function author({ authorId }) {
 	const [author, setAuthor] = useState();
-	if (authorId && authorId !== 0) {
-		apiFetch({
-			path: addQueryArgs(`/wp/v2/users/${authorId}`)
-		})
-			.then(res => {
-				setAuthor(res);
+	if (!author) {
+		if (authorId && authorId !== 0) {
+			apiFetch({
+				path: addQueryArgs(`/wp/v2/users/${authorId}`)
 			})
-			.catch(err => {
-				console.log(err);
-			});
+				.then(res => {
+					setAuthor(res);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		}
 	}
 	return (
 		<Fragment>

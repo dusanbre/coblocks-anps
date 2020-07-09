@@ -1,10 +1,10 @@
 import { Component } from "@wordpress/element";
 import { withSelect } from "@wordpress/data";
-import apiFetch from "@wordpress/api-fetch";
-import { addQueryArgs } from "@wordpress/url";
 
 import ImageMedia from "./media";
 import Author from "./author";
+import Comment from "./comment";
+import Category from "./category";
 
 class display extends Component {
 	render() {
@@ -52,7 +52,7 @@ class display extends Component {
 				blogType = "col-md-12";
 				break;
 		}
-		console.log(this.props);
+		// console.log(this.props);
 		if (posts) {
 			postText = (
 				<div className="row anps-blog">
@@ -93,8 +93,32 @@ class display extends Component {
 												<i className="fa fa-calendar" />
 												<time datetime={post.date}>{post.date}</time>
 											</li>
+											<li>
+												<i className="fa fa-commenting-o" />
+												<Comment postId={post.id} />
+											</li>
+											<li>
+												<i className="fa fa-folder-o" />
+												<Category postCat={post.post_categories} />
+											</li>
 										</ul>
 									</header>
+									<div className="post-content entry-content">
+										<div className="post-desc clearfix">
+											<p
+												dangerouslySetInnerHTML={{
+													__html: post.content.rendered
+												}}
+											/>
+										</div>
+										<a
+											href={post.link}
+											target="_self"
+											rel="noopener noreferrer"
+										>
+											Read More
+										</a>
+									</div>
 								</article>
 							</div>
 						);

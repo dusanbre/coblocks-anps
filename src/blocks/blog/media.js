@@ -4,17 +4,18 @@ import { useState, Fragment } from "@wordpress/element";
 
 export default function media({ imageId }) {
 	const [image, setImage] = useState();
-
-	if (imageId && imageId !== 0) {
-		apiFetch({
-			path: addQueryArgs(`/wp/v2/media/${imageId}`)
-		})
-			.then(res => {
-				setImage(res);
+	if (!image) {
+		if (imageId && imageId !== 0) {
+			apiFetch({
+				path: addQueryArgs(`/wp/v2/media/${imageId}`)
 			})
-			.catch(err => {
-				console.log(err);
-			});
+				.then(res => {
+					setImage(res);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		}
 	}
 	return (
 		<Fragment>
