@@ -32,6 +32,10 @@
 		},
 		"isLoadedPost": {
 			"default": false
+		},
+		"media": {
+			"type": "array",
+			"default": []
 		}
 	}
 }

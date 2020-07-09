@@ -1,5 +1,9 @@
 import { Component } from "@wordpress/element";
 import { withSelect } from "@wordpress/data";
+import apiFetch from "@wordpress/api-fetch";
+import { addQueryArgs } from "@wordpress/url";
+
+import ImageMedia from "./media";
 
 class display extends Component {
 	render() {
@@ -10,7 +14,8 @@ class display extends Component {
 			order,
 			selectedCategory,
 			columns,
-			posts
+			posts,
+			media
 		} = attributes;
 		const dusan = {
 			per_page: postPerPage,
@@ -27,6 +32,7 @@ class display extends Component {
 			posts: getPosts
 		});
 
+		console.log(attributes);
 		let blogType, postText;
 		switch (columns) {
 			case "1":
@@ -45,13 +51,13 @@ class display extends Component {
 				blogType = "col-md-12";
 				break;
 		}
-
+		console.log(this.props);
 		if (posts) {
 			postText = (
 				<div className="row anps-blog">
 					{posts.map(post => {
 						return (
-							<div className={columns}>
+							<div className={blogType}>
 								<article
 									id={post.id}
 									className={
@@ -64,7 +70,9 @@ class display extends Component {
 										post.format
 									}
 								>
-									<header className="entry-header"></header>
+									<header className="entry-header">
+										<ImageMedia imageId={post.featured_media} />
+									</header>
 								</article>
 							</div>
 						);
@@ -72,13 +80,14 @@ class display extends Component {
 				</div>
 			);
 		}
-		console.log(attributes);
 		return <div>{postText}</div>;
 	}
 }
 
-export default withSelect(select => {
+export default withSelect((select, props) => {
 	return {
-		post: select("core").getEntityRecords("postType", "post", { per_page: -1 })
+		posts: select("core").getEntityRecords("postType", "post", {
+			per_page: -1
+		})
 	};
 })(display);
