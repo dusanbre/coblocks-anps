@@ -4,6 +4,7 @@ import apiFetch from "@wordpress/api-fetch";
 import { addQueryArgs } from "@wordpress/url";
 
 import ImageMedia from "./media";
+import Author from "./author";
 
 class display extends Component {
 	render() {
@@ -59,19 +60,40 @@ class display extends Component {
 						return (
 							<div className={blogType}>
 								<article
-									id={post.id}
+									id={"post-" + post.id}
 									className={
-										post.id +
 										"post-" +
+										post.id +
+										" post-" +
 										post.type +
-										"status-" +
+										" status-" +
 										post.status +
-										"format-" +
+										" format-" +
 										post.format
 									}
 								>
 									<header className="entry-header">
 										<ImageMedia imageId={post.featured_media} />
+										<a
+											href={post.link}
+											target="_self"
+											rel="noopener noreferrer"
+										>
+											<h3 className="post-title entry-title text-uppercase">
+												{post.title.rendered}
+											</h3>
+										</a>
+										<ul className="post-meta">
+											<li className="author vcard">
+												<i className="fa fa-user" />
+												<span className="text-lowercase">posted by:</span>
+												<Author authorId={post.author} />
+											</li>
+											<li>
+												<i className="fa fa-calendar" />
+												<time datetime={post.date}>{post.date}</time>
+											</li>
+										</ul>
 									</header>
 								</article>
 							</div>
