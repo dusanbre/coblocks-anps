@@ -1,4 +1,4 @@
-import { Component } from "@wordpress/element";
+import { Component, Fragment } from "@wordpress/element";
 import { withSelect } from "@wordpress/data";
 
 import ImageMedia from "./media";
@@ -57,6 +57,7 @@ class display extends Component {
 			postText = (
 				<div className="row anps-blog">
 					{posts.map(post => {
+						// const content = post.content.rendered.slice(1, 200);
 						return (
 							<div className={blogType}>
 								<article
@@ -107,14 +108,15 @@ class display extends Component {
 										<div className="post-desc clearfix">
 											<p
 												dangerouslySetInnerHTML={{
-													__html: post.content.rendered
+													__html: post.content.rendered.slice(1, 150) + "..."
 												}}
 											/>
 										</div>
 										<a
 											href={post.link}
-											target="_self"
+											target="_blank"
 											rel="noopener noreferrer"
+											className="btn btn-md btn-gradient btn-shadow"
 										>
 											Read More
 										</a>
@@ -126,7 +128,7 @@ class display extends Component {
 				</div>
 			);
 		}
-		return <div>{postText}</div>;
+		return <Fragment>{postText}</Fragment>;
 	}
 }
 
