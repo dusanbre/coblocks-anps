@@ -13,6 +13,7 @@ if (!defined('ABSPATH')) {
 
 //require files for render on frontend
 require_once(ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/button/render.php');
+require_once(ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/blog/render.php');
 
 /**
  * Load registration for our blocks.
@@ -92,6 +93,15 @@ class AnpsBlocks_Register_Blocks
 				'editor_style'  => $slug . '-editor',
 				'style'         => $slug . '-frontend',
 				'render_callback' => 'anps_render_button'
+			)
+		);
+		register_block_type(
+			$slug . '/blog',
+			array(
+				'editor_script' => $slug . '-editor',
+				'editor_style'  => $slug . '-editor',
+				'style'         => $slug . '-frontend',
+				'render_callback' => 'anps_render_blog'
 			)
 		);
 	}

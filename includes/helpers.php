@@ -72,3 +72,13 @@ function anps_wp_rest_get_tags_links($post)
     }
     return $post_tags;
 }
+
+
+add_filter('register_post_type_args', 'sb_add_cpts_to_api', 10, 2);
+function sb_add_cpts_to_api($args, $post_type)
+{
+    if ('portfolio' === $post_type) {
+        $args['show_in_rest'] = true;
+    }
+    return $args;
+}

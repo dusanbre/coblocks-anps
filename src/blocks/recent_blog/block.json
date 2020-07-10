@@ -1,0 +1,36 @@
+{
+	"name": "anpsblocks/recent-blog",
+	"category": "anps",
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"style": {
+			"type": "string",
+			"default": "default"
+		},
+		"num_post": {
+			"type": "string",
+			"default": "-1"
+		},
+		"num_in_row": {
+			"type": "string",
+			"default": "3"
+		},
+		"slider": {
+			"type": "string",
+			"default": "1"
+		},
+		"content_length": {
+			"type": "string",
+			"default": "130"
+		},
+		"cat_ids": {
+			"type": "array",
+			"default": []
+		},
+		"posts": {
+			"type": "object"
+		}
+	}
+}

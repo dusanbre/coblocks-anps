@@ -18,7 +18,7 @@ class display extends Component {
 			posts,
 			media
 		} = attributes;
-		const dusan = {
+		const query = {
 			per_page: postPerPage,
 			categories: selectedCategory,
 			orderby: orderby,
@@ -27,13 +27,12 @@ class display extends Component {
 		};
 		const getPosts = wp.data
 			.select("core")
-			.getEntityRecords("postType", "post", dusan);
+			.getEntityRecords("postType", "post", query);
 
 		setAttributes({
 			posts: getPosts
 		});
 
-		console.log(attributes);
 		let blogType, postText;
 		switch (columns) {
 			case "1":
@@ -52,12 +51,10 @@ class display extends Component {
 				blogType = "col-md-12";
 				break;
 		}
-		// console.log(this.props);
 		if (posts) {
 			postText = (
 				<div className="row anps-blog">
 					{posts.map(post => {
-						// const content = post.content.rendered.slice(1, 200);
 						return (
 							<div className={blogType}>
 								<article
