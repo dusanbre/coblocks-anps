@@ -42,6 +42,8 @@ import * as cta from "./blocks/cta";
 import * as cic from "./blocks/contact_info_card";
 import * as blog from "./blocks/blog";
 import * as recentBlog from "./blocks/recent_blog";
+import * as heading from "./blocks/heading";
+import * as icon from "./blocks/icon";
 
 /**
  * Function to register an individual block.
@@ -85,7 +87,9 @@ export const registerCoBlocksBlocks = () => {
 		cta,
 		cic,
 		blog,
-		recentBlog
+		recentBlog,
+		heading,
+		icon
 	].forEach(registerBlock);
 };
 

@@ -1,0 +1,32 @@
+{
+	"name": "anpsblocks/anps-icon",
+	"category": "anps",
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"content": {
+			"type": "string"
+		},
+		"target": {
+			"type": "string",
+			"default": "_self"
+		},
+		"icon": {
+			"type": "string"
+		},
+		"iconSize": {
+			"type": "string",
+			"default": "30"
+		},
+		"url": {
+			"type": "string"
+		},
+		"position": {
+			"type": "string"
+		},
+		"image": {
+			"type": "object"
+		}
+	}
+}

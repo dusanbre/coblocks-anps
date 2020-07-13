@@ -1,0 +1,41 @@
+{
+	"name": "anpsblocks/heading",
+	"category": "anps",
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"size": {
+			"type": "string",
+			"default": "h1"
+		},
+		"font_size": {
+			"type": "number"
+		},
+		"heading_class": {
+			"type": "string",
+			"default": "content_heading"
+		},
+		"subtitle": {
+			"type": "string"
+		},
+		"h_class": {
+			"type": "string"
+		},
+		"h_id": {
+			"type": "string"
+		},
+		"heading_style": {
+			"type": "string",
+			"default": "style-1"
+		},
+		"color": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"subtitle_color": {
+			"type": "string",
+			"default": "#000000"
+		}
+	}
+}
