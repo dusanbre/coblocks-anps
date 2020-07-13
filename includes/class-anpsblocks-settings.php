@@ -187,6 +187,19 @@ class AnpsBlocks_Settings
 			array('wp-edit-blocks'),
 			null
 		);
+		wp_enqueue_style(
+			"anps-carousel",
+			get_template_directory_uri()  . '/js/owlcarousel/assets/owl.carousel.css',
+			array('wp-edit-blocks'),
+			null
+		);
+
+		wp_enqueue_script(
+			"anps-owlcarousel",
+			get_template_directory_uri() . "/js/owlcarousel/owl.carousel.js",
+			array('wp-edit-blocks'),
+			null
+		);
 	}
 }
 

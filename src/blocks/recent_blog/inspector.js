@@ -30,7 +30,7 @@ function inspector(props) {
 					value={attributes.num_post}
 					onChange={value => setAttributes({ num_post: value })}
 					help={__(
-						"Enter number of recent blog posts. If you want to display all posts, leave this field empty."
+						"Enter number of recent blog posts. If you want to display all posts, leave this field on -1."
 					)}
 				/>
 				<SelectControl

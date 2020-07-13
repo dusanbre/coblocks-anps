@@ -4,8 +4,9 @@
 if (!defined('ABSPATH')) {
     exit;
 }
-add_action('rest_api_init', 'anps_wp_rest_insert_api_parms');
 
+
+add_action('rest_api_init', 'anps_wp_rest_insert_api_parms');
 /**
  * anps_wp_rest_insert_api_parms
  *
@@ -73,12 +74,20 @@ function anps_wp_rest_get_tags_links($post)
     return $post_tags;
 }
 
-
+//filter register post type for custom post type to add to rest api
 add_filter('register_post_type_args', 'sb_add_cpts_to_api', 10, 2);
+/**
+ * sb_add_cpts_to_api
+ *
+ * @param  mixed $args
+ * @param  mixed $post_type
+ * @return void
+ */
 function sb_add_cpts_to_api($args, $post_type)
 {
     if ('portfolio' === $post_type) {
         $args['show_in_rest'] = true;
+        $args['query_var'] = true;
     }
     return $args;
 }
