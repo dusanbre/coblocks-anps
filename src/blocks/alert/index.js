@@ -2,10 +2,9 @@
  * Internal dependencies
  */
 import edit from "./edit";
-
 import metadata from "./block.json";
-
 import save from "./save";
+import icons from "../../utils/icons/anps-icon";
 
 /**
  * WordPress dependencies
@@ -29,6 +28,7 @@ const settings = {
 		"Add a structured wrapper for column blocks, then add content blocks you’d like to the columns.",
 		"anpsblocks"
 	),
+	icon: icons.anps,
 	keywords: [
 		"anpsblocks",
 		/* translators: block keyword */
