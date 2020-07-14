@@ -13,14 +13,13 @@
 }
 
 .wp-block-coblocks-row[data-columns="1"] .wp-block-coblocks-column__inner {
-
 	> [class*="wp-block-"] {
 		margin-left: auto;
 		margin-right: auto;
 		max-width: calc(6 * (100vw / 12.5));
 
 		&.alignwide {
-			max-width: calc(6 * (100vw / 8.5));
+			max-width: calc(6 * (100vw / 10));
 		}
 
 		&.alignfull {
@@ -28,9 +27,7 @@
 		}
 
 		&[data-columns="1"] {
-
 			.wp-block-coblocks-column__inner {
-
 				> :not([class*="wp-block-"]) {
 					max-width: 100%;
 				}
@@ -76,9 +73,7 @@
 }
 
 .has-small-gutter {
-
 	> [class*="wp-block-coblocks-column"] {
-
 		&:nth-child(odd) {
 			margin-right: var(--coblocks-spacing--1, map-get($spacing, 1));
 		}
@@ -98,9 +93,7 @@
 }
 
 .has-medium-gutter {
-
 	> [class*="wp-block-coblocks-column"] {
-
 		&:nth-child(odd) {
 			margin-right: var(--coblocks-spacing--2, map-get($spacing, 2));
 		}
@@ -120,9 +113,7 @@
 }
 
 .has-large-gutter {
-
 	> [class*="wp-block-coblocks-column"] {
-
 		&:nth-child(odd) {
 			margin-right: var(--coblocks-spacing--3, map-get($spacing, 3));
 		}
@@ -142,9 +133,7 @@
 }
 
 .has-huge-gutter {
-
 	> [class*="wp-block-coblocks-column"] {
-
 		&:nth-child(odd) {
 			margin-right: var(--coblocks-spacing--4, map-get($spacing, 4));
 		}
@@ -164,7 +153,6 @@
 }
 
 .wp-block-coblocks-row__inner.is-stacked-on-mobile {
-
 	@include break-small-max() {
 		flex-direction: column;
 
@@ -184,19 +172,27 @@
 		}
 
 		&.has-small-gutter > [class*="wp-block"]:not(:last-child) {
-			margin-bottom: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) * 2);
+			margin-bottom: calc(
+				var(--coblocks-spacing--1, #{map-get($spacing, 1)}) * 2
+			);
 		}
 
 		&.has-medium-gutter > [class*="wp-block"]:not(:last-child) {
-			margin-bottom: calc(var(--coblocks-spacing--2, #{map-get($spacing, 2)}) * 2);
+			margin-bottom: calc(
+				var(--coblocks-spacing--2, #{map-get($spacing, 2)}) * 2
+			);
 		}
 
 		&.has-large-gutter > [class*="wp-block"]:not(:last-child) {
-			margin-bottom: calc(var(--coblocks-spacing--3, #{map-get($spacing, 3)}) * 2);
+			margin-bottom: calc(
+				var(--coblocks-spacing--3, #{map-get($spacing, 3)}) * 2
+			);
 		}
 
 		&.has-huge-gutter > [class*="wp-block"]:not(:last-child) {
-			margin-bottom: calc(var(--coblocks-spacing--4, #{map-get($spacing, 4)}) * 2);
+			margin-bottom: calc(
+				var(--coblocks-spacing--4, #{map-get($spacing, 4)}) * 2
+			);
 		}
 	}
 }
@@ -204,8 +200,7 @@
 /**
  * Row and Column Alignment
  */
- .wp-block-coblocks-row__inner {
-
+.wp-block-coblocks-row__inner {
 	.wp-block[data-type="coblocks/column"] {
 		display: flex;
 		margin-top: 0;
@@ -230,7 +225,6 @@
 	}
 
 	.wp-block-coblocks-column {
-
 		&.is-vertically-aligned-top {
 			display: flex;
 

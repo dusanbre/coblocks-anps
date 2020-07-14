@@ -33,6 +33,7 @@ export default function save(props) {
 						href={attributes.url}
 						target={attributes.target}
 						className="btn btn-md btn-minimal"
+						rel="noopener noreferrer"
 					>
 						Read More
 					</a>
