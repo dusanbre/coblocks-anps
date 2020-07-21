@@ -1,0 +1,18 @@
+{
+	"name": "anpsblock/logos",
+	"category": "anps",
+	"attributes": {
+		"inRow": {
+			"type": "string",
+			"default": "6"
+		},
+		"style": {
+			"type": "string",
+			"default": "style-1"
+		},
+		"logos": {
+			"type": "array",
+			"default": []
+		}
+	}
+}

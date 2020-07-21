@@ -87,7 +87,10 @@ export default function slider(props) {
 								<div className="owl-stage anps-stage">
 									{posts.map(post => {
 										return (
-											<div className="owl-item anps-owl-item">
+											<div
+												className="owl-item anps-owl-item"
+												owl-type={num_in_row}
+											>
 												{style == "default" ? (
 													<StyleDefault post={post} attr={attributes} />
 												) : (
