@@ -3,10 +3,14 @@ import {
 	Button,
 	IconButton,
 	PanelBody,
-	TextareaControl,
+	TextControl,
 	SelectControl
 } from "@wordpress/components";
-import { InspectorControls } from "@wordpress/editor";
+import {
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck
+} from "@wordpress/editor";
 import { Fragment } from "@wordpress/element";
 
 export default function inspector(props) {
@@ -15,14 +19,28 @@ export default function inspector(props) {
 	const handleAddValues = () => {
 		const logos = [...attributes.logos];
 		logos.push({
-			content: ""
+			content: "",
+			url: "",
+			alt: ""
 		});
 		setAttributes({ logos });
 	};
 
-	const handleValuesChange = (content, index) => {
+	const handleMediaUpload = (media, index) => {
 		const logos = [...attributes.logos];
-		logos[index].content = content;
+		logos[index].content = media;
+		setAttributes({ logos });
+	};
+
+	const handleUrl = (url, index) => {
+		const logos = [...attributes.logos];
+		logos[index].url = url;
+		setAttributes({ logos });
+	};
+
+	const handleAlt = (alt, index) => {
+		const logos = [...attributes.logos];
+		logos[index].alt = alt;
 		setAttributes({ logos });
 	};
 
@@ -31,12 +49,26 @@ export default function inspector(props) {
 	if (attributes.logos.length) {
 		logosFields = attributes.logos.map((values, index) => {
 			return (
-				<div key={index} className="anps_list_inspector_controls">
+				<div key={index} className="">
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={media => handleMediaUpload(media, index)}
+							allowedTypes={["image"]}
+							value={attributes.image}
+							render={({ open }) => (
+								<Button style={{ marginBottom: 15 }} isPrimary onClick={open}>
+									Open Media Library
+								</Button>
+							)}
+						/>
+					</MediaUploadCheck>
 					<TextControl
-						className="anps_list_textarea_item"
-						help="Enter text"
-						value={attributes.logos[index].content}
-						onChange={content => handleValuesChange(content, index)}
+						label={__("Url")}
+						onChange={url => handleUrl(url, index)}
+					/>
+					<TextControl
+						label={__("Alt")}
+						onChange={alt => handleAlt(alt, index)}
 					/>
 					<IconButton
 						className="anps_list_remove_item"
@@ -52,6 +84,20 @@ export default function inspector(props) {
 		<Fragment>
 			<InspectorControls>
 				<PanelBody title={__("Anps Logos Settings")} initialOpen={true}>
+					<TextControl
+						label={__("Logos in row")}
+						help={__("Logos in one row")}
+						onChange={value => setAttributes({ inRow: value })}
+					/>
+					<SelectControl
+						label={__("Style")}
+						help={__("Select logos style")}
+						options={[
+							{ label: __("Style 1"), value: "style-1" },
+							{ label: __("Style 2"), value: "style-2" },
+							{ label: __("Style 3"), value: "style-3" }
+						]}
+					/>
 					{logosFields}
 					<Button
 						isDefault
