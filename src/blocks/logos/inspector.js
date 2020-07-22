@@ -19,7 +19,7 @@ export default function inspector(props) {
 	const handleAddValues = () => {
 		const logos = [...attributes.logos];
 		logos.push({
-			content: "",
+			media: "",
 			url: "",
 			alt: ""
 		});
@@ -28,13 +28,19 @@ export default function inspector(props) {
 
 	const handleMediaUpload = (media, index) => {
 		const logos = [...attributes.logos];
-		logos[index].content = media;
+		logos[index].media = media;
 		setAttributes({ logos });
 	};
 
 	const handleUrl = (url, index) => {
 		const logos = [...attributes.logos];
 		logos[index].url = url;
+		setAttributes({ logos });
+	};
+
+	const handleRemoveValues = index => {
+		const logos = [...attributes.logos];
+		logos.splice(index, 1);
 		setAttributes({ logos });
 	};
 
@@ -48,16 +54,21 @@ export default function inspector(props) {
 	console.log(attributes);
 	if (attributes.logos.length) {
 		logosFields = attributes.logos.map((values, index) => {
+			console.log(values);
 			return (
-				<div key={index} className="">
+				<PanelBody title={"Logos Item " + index} initialOpen={false}>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={media => handleMediaUpload(media, index)}
 							allowedTypes={["image"]}
 							value={attributes.image}
 							render={({ open }) => (
-								<Button style={{ marginBottom: 15 }} isPrimary onClick={open}>
-									Open Media Library
+								<Button onClick={open} className="anps__button-logos-img">
+									{values.media ? (
+										<img src={values.media.sizes.full.url} />
+									) : (
+										<span>Add Logo</span>
+									)}
 								</Button>
 							)}
 						/>
@@ -76,7 +87,7 @@ export default function inspector(props) {
 						label="Delete values"
 						onClick={() => handleRemoveValues(index)}
 					/>
-				</div>
+				</PanelBody>
 			);
 		});
 	}
@@ -92,11 +103,13 @@ export default function inspector(props) {
 					<SelectControl
 						label={__("Style")}
 						help={__("Select logos style")}
+						value={attributes.style}
 						options={[
 							{ label: __("Style 1"), value: "style-1" },
 							{ label: __("Style 2"), value: "style-2" },
 							{ label: __("Style 3"), value: "style-3" }
 						]}
+						onChange={value => setAttributes({ style: value })}
 					/>
 					{logosFields}
 					<Button
