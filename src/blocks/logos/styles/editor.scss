@@ -13,3 +13,14 @@
 		margin: 0 auto;
 	}
 }
+
+.owl-stage {
+	transform: translate3d(0px, 0px, 0px);
+	transition: all 0.25s ease 0s;
+	width: 2340px;
+
+	.owl-item {
+		width: 360px;
+		margin-right: 30px;
+	}
+}

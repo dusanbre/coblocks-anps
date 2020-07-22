@@ -51,10 +51,8 @@ export default function inspector(props) {
 	};
 
 	let logosFields;
-	console.log(attributes);
 	if (attributes.logos.length) {
 		logosFields = attributes.logos.map((values, index) => {
-			console.log(values);
 			return (
 				<PanelBody title={"Logos Item " + index} initialOpen={false}>
 					<MediaUploadCheck>
