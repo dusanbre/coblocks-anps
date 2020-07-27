@@ -97,6 +97,7 @@ export default function inspector(props) {
 						label={__("Logos in row")}
 						help={__("Logos in one row")}
 						onChange={value => setAttributes({ inRow: value })}
+						value={attributes.inRow}
 					/>
 					<SelectControl
 						label={__("Style")}
