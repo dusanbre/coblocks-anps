@@ -4,15 +4,15 @@
 	"attributes": {
 		"inRow": {
 			"type": "string",
-			"default": "6"
-		},
-		"style": {
-			"type": "string",
-			"default": "style-1"
+			"default": ""
 		},
 		"logos": {
 			"type": "array",
 			"default": []
+		},
+		"style": {
+			"type": "string",
+			"default": "style-1"
 		}
 	}
 }

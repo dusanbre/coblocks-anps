@@ -1,0 +1,50 @@
+{
+	"name": "anpsblocks/portfolio",
+	"category": "anps",
+	"attributes": {
+		"perPage": {
+			"type": "string",
+			"default": "-1"
+		},
+		"inRow": {
+			"type": "string",
+			"default": ""
+		},
+		"portfolioCategories": {
+			"type": "array",
+			"default": []
+		},
+		"filter": {
+			"type": "string",
+			"default": "on"
+		},
+		"orderby": {
+			"type": "string",
+			"default": ""
+		},
+		"order": {
+			"type": "string",
+			"default": ""
+		},
+		"mobileView": {
+			"type": "string",
+			"default": ""
+		},
+		"itemBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"itemTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"itemTitleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"portfolioItems": {
+			"type": "array",
+			"default": []
+		}
+	}
+}
