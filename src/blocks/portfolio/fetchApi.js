@@ -3,19 +3,25 @@ import { addQueryArgs } from "@wordpress/url";
 import { useState } from "react";
 
 export function FetchPortfolio(attributes) {
-	var query = {
-		per_page: attributes.perPage ? attributes.perPage : -1,
-		// order: attributes.order ? attributes.order : "asc",
-		// orderby: attributes.orderby ? attributes.orderby : "date",
-		status: "publish",
-		categories: attributes.selectedCategory ? attributes.selectedCategory : ""
-	};
-	const getPort = wp.data
-		.select("core")
-		.getEntityRecords("postType", "portfolio", query);
-	return getPort;
+	const [api, setApi] = useState([]);
 
-	// return api;
+	apiFetch({
+		path: addQueryArgs(
+			`/wp/v2/portfolio?orderby=${attributes.orderby}&order=${
+				attributes.order
+			}&portfolio_category=${
+				attributes.selectedCategory ? parseInt(attributes.selectedCategory) : ""
+			}&per_page=${attributes.perPage}`
+		)
+	})
+		.then(res => {
+			setApi(res);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+
+	return api;
 }
 
 export function FetchCategories() {

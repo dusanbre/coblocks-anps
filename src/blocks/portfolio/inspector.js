@@ -81,7 +81,6 @@ export default function inspector(props) {
 						label={__("Order")}
 						value={attributes.order}
 						options={[
-							{ label: __("Default"), value: "" },
 							{ label: __("ASC"), value: "asc" },
 							{ label: __("DESC"), value: "desc" }
 						]}

@@ -7,8 +7,7 @@
 			"default": "-1"
 		},
 		"selectedCategory": {
-			"type": "number",
-			"default": ""
+			"type": "number"
 		},
 		"inRow": {
 			"type": "string",
@@ -28,7 +27,7 @@
 		},
 		"order": {
 			"type": "string",
-			"default": "default"
+			"default": "asc"
 		},
 		"mobileView": {
 			"type": "string",

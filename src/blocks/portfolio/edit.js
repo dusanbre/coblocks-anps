@@ -5,7 +5,9 @@ import { FetchPortfolio } from "./fetchApi";
 
 export default function edit(props) {
 	const { attributes } = props;
+
 	const get = FetchPortfolio(attributes);
+
 	console.log(get);
 	return (
 		<Fragment>
