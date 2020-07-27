@@ -6,9 +6,13 @@
 			"type": "string",
 			"default": "-1"
 		},
+		"selectedCategory": {
+			"type": "number",
+			"default": ""
+		},
 		"inRow": {
 			"type": "string",
-			"default": ""
+			"default": "3"
 		},
 		"portfolioCategories": {
 			"type": "array",
@@ -20,15 +24,15 @@
 		},
 		"orderby": {
 			"type": "string",
-			"default": ""
+			"default": "date"
 		},
 		"order": {
 			"type": "string",
-			"default": ""
+			"default": "default"
 		},
 		"mobileView": {
 			"type": "string",
-			"default": ""
+			"default": "2"
 		},
 		"itemBgColor": {
 			"type": "string",
