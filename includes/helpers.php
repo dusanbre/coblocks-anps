@@ -99,7 +99,7 @@ function anps_wp_rest_get_portfolio_cat($portfolio)
         if (is_wp_error($term_link)) {
             continue;
         }
-        $portfolio_categories[] = array('term_id' => $term->term_id, 'name' => $term->name, 'link' => $term_link);
+        $portfolio_categories[] = array('term_id' => $term->term_id, 'name' => $term->name, 'link' => $term_link, 'slug' => $term->slug);
     }
     return $portfolio_categories;
 }

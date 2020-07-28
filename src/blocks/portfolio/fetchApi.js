@@ -2,25 +2,50 @@ import apiFetch from "@wordpress/api-fetch";
 import { addQueryArgs } from "@wordpress/url";
 import { useState } from "react";
 
-export function FetchPortfolio(attributes) {
+export function FetchPortfolio({ attributes, setAttributes }) {
 	const [api, setApi] = useState([]);
+	const { perPage, selectedCategory, orderby, order } = attributes;
 
-	apiFetch({
-		path: addQueryArgs(
-			`/wp/v2/portfolio?orderby=${attributes.orderby}&order=${
-				attributes.order
-			}&portfolio_category=${
-				attributes.selectedCategory ? parseInt(attributes.selectedCategory) : ""
-			}&per_page=${attributes.perPage}`
-		)
-	})
-		.then(res => {
-			setApi(res);
+	if (!attributes.portfolioItems) {
+		apiFetch({
+			path: addQueryArgs(
+				`/wp/v2/portfolio?orderby=${attributes.orderby}&order=${
+					attributes.order
+				}&portfolio_category=${
+					attributes.selectedCategory
+						? parseInt(attributes.selectedCategory)
+						: ""
+				}&per_page=${attributes.perPage}`
+			)
 		})
-		.catch(err => {
-			console.log(err);
-		});
+			.then(res => {
+				if (res) {
+					setApi(res);
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
 
+	// if (fetch) {
+	// 	setAttributes({ portfolioItems: fetch });
+	// }
+	// const query = {
+	// 	per_page: perPage,
+	// 	portfolio_category: [selectedCategory],
+	// 	orderby: orderby,
+	// 	order: order,
+	// 	status: "publish"
+	// };
+	// const getPosts = wp.data
+	// 	.select("core")
+	// 	.getEntityRecords("postType", "portfolio", query);
+
+	// setAttributes({
+	// 	portfolio: getPosts
+	// });
+	// console.log(fetch);
 	return api;
 }
 

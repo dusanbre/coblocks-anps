@@ -46,8 +46,7 @@
 			"default": ""
 		},
 		"portfolioItems": {
-			"type": "array",
-			"default": []
+			"type": "array"
 		}
 	}
 }
