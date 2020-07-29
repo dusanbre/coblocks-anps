@@ -15,6 +15,7 @@ if (!defined('ABSPATH')) {
 require_once(ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/button/render.php');
 require_once(ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/blog/render.php');
 require_once(ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/recent_blog/render.php');
+require_once(ANPSBLOCKS_PLUGIN_DIR . 'src/blocks/portfolio/render.php');
 
 /**
  * Load registration for our blocks.
@@ -112,6 +113,15 @@ class AnpsBlocks_Register_Blocks
 				'editor_style'  => $slug . '-editor',
 				'style'         => $slug . '-frontend',
 				'render_callback' => 'anps_render_recent_blog'
+			)
+		);
+		register_block_type(
+			$slug . '/portfolio',
+			array(
+				'editor_script' => $slug . '-editor',
+				'editor_style'  => $slug . '-editor',
+				'style'         => $slug . '-frontend',
+				'render_callback' => 'anps_render_portfolio'
 			)
 		);
 	}
