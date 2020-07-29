@@ -5,7 +5,7 @@ function anps_render_portfolio($attributes)
 
     wp_enqueue_script('anps-isotope');
 
-    $category = (isset($attributes['portfolioCategory'])) ? $attributes['portfolioCategory'] : 'All';
+    $category = (isset($attributes['selectedCategory'])) ? $attributes['selectedCategory'] : 0;
     $item_bg_color = (isset($attributes['itemBgColor'])) ? $attributes['itemBgColor'] : '';
     $item_title_color = (isset($attributes['itemTitleColor'])) ? $attributes['itemTitleColor'] : '';
     $item_text_color = (isset($attributes['itemTextColor'])) ? $attributes['itemTextColor'] : '';
