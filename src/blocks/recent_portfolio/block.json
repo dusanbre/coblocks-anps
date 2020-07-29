@@ -1,0 +1,53 @@
+{
+	"name": "anpsblocks/recent-portfolio",
+	"category": "anps",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"perPage": {
+			"type": "string",
+			"default": "-1"
+		},
+		"selectedCategory": {
+			"type": "number",
+			"default": ""
+		},
+		"inRow": {
+			"type": "string",
+			"default": "col-md-4"
+		},
+		"portfolioCategories": {
+			"type": "array",
+			"default": []
+		},
+		"filter": {
+			"type": "boolean",
+			"default": false
+		},
+		"itemBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"itemTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"itemTitleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"bgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"portfolioItems": {
+			"type": "array"
+		}
+	}
+}

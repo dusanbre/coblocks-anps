@@ -56,16 +56,6 @@ function anps_render_portfolio($attributes)
     );
     $portfolio_posts = new WP_Query($args);
 
-    // /*desktop-class*/
-    // $mdclass = " col-md-4";
-    // if ($columns == "2") {
-    //     $mdclass = " col-md-6";
-    // } else if ($columns == "4") {
-    //     $mdclass = " col-md-3";
-    // } else if ($columns == "6") {
-    //     $mdclass = " col-md-2";
-    // }
-
     /* Mobile class */
     $m_class = " col-xs-6";
     if ($mobile_class == "1") {

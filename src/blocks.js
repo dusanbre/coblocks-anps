@@ -46,6 +46,7 @@ import * as heading from "./blocks/heading";
 import * as icon from "./blocks/icon";
 import * as logos from "./blocks/logos";
 import * as portfolio from "./blocks/portfolio";
+import * as recentPortfolio from "./blocks/recent_portfolio";
 
 /**
  * Function to register an individual block.
@@ -93,7 +94,8 @@ export const registerCoBlocksBlocks = () => {
 		heading,
 		icon,
 		logos,
-		portfolio
+		portfolio,
+		recentPortfolio
 	].forEach(registerBlock);
 };
 
