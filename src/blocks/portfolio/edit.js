@@ -49,21 +49,6 @@ function edit(props) {
 			break;
 	}
 
-	// switch (inRow) {
-	// 	case "2":
-	// 		mdClass = "col-md-6";
-	// 		break;
-	// 	case "3":
-	// 		mdClass = "col-md-4";
-	// 	case "4":
-	// 		mdClass = "col-md-3";
-	// 	case "6":
-	// 		mdClass = "col-md-2";
-	// 	default:
-	// 		mdClass = "col-md-4";
-	// 		break;
-	// }
-
 	if (filter == "on") {
 		if (!portfolioCategories) {
 			filters = <ul className="filter"></ul>;

@@ -107,6 +107,8 @@ function anps_wp_rest_get_portfolio_cat($portfolio)
 //filter register post type for custom post type to add to rest api
 add_filter('register_post_type_args', 'anps_add_cpts_to_api', 10, 2);
 add_filter('register_taxonomy_args', 'anps_add_port_cat_to_api', 10, 2);
+add_filter('register_post_type_args', 'anps_add_team_to_api', 10, 2);
+
 /**
  * sb_add_cpts_to_api
  *
@@ -128,6 +130,14 @@ function anps_add_port_cat_to_api($args, $taxonomy)
     if ('portfolio_category' === $taxonomy) {
         $args['show_in_rest'] = true;
         $args['supports'] = array('editor');
+    }
+    return $args;
+}
+
+function anps_add_team_to_api($args, $post_type)
+{
+    if ('team' === $post_type) {
+        $args['show_in_rest'] = true;
     }
     return $args;
 }
