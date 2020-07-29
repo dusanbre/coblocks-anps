@@ -25,9 +25,10 @@ export default function inspector(props) {
 		category = attributes.portfolioCategories.map(cat => {
 			return { label: cat.name, value: cat.id };
 		});
+		category.push({ label: "ALL", value: "" });
 	}
 
-	// console.log(attributes);
+	// console.log(category);
 
 	return (
 		<Fragment>
@@ -43,10 +44,10 @@ export default function inspector(props) {
 						label={__("Show in row")}
 						value={attributes.inRow}
 						options={[
-							{ label: __("6"), value: "6" },
-							{ label: __("4"), value: "4" },
-							{ label: __("3"), value: "3" },
-							{ label: __("2"), value: "2" }
+							{ label: __("6"), value: "col-md-2" },
+							{ label: __("4"), value: "col-md-3" },
+							{ label: __("3"), value: "col-md-4" },
+							{ label: __("2"), value: "col-md-6" }
 						]}
 						onChange={value => setAttributes({ inRow: value })}
 					/>

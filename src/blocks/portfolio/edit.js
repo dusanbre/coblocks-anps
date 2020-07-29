@@ -1,110 +1,166 @@
 import { Fragment } from "@wordpress/element";
 import Inspector from "./inspector";
-import { FetchPortfolio } from "./fetchApi";
-import apiFetch from "@wordpress/api-fetch";
-import { addQueryArgs } from "@wordpress/url";
-import { useState } from "react";
+import { withSelect } from "@wordpress/data";
 
 import ImageMedia from "../blog/media";
 
-export default function edit(props) {
+function edit(props) {
 	const { attributes, setAttributes } = props;
 	const {
 		inRow,
 		filter,
 		mobileView,
-		itemBgColoe,
+		itemBgColor,
 		itemTextColor,
 		itemTitleColor,
 		portfolioItems,
 		perPage,
 		selectedCategory,
 		orderby,
-		order
+		order,
+		portfolioCategories
 	} = attributes;
 
-	const [api, setApi] = useState([]);
-	const fetched = FetchPortfolio(props);
-	setAttributes({ portfolioItems: fetched });
+	//fetch portfolio data
+	const query = {
+		per_page: perPage,
+		portfolio_category: selectedCategory,
+		orderby: orderby,
+		order: order,
+		status: "publish"
+	};
+	const getPosts = wp.data
+		.select("core")
+		.getEntityRecords("postType", "portfolio", query);
 
-	// if (!portfolioItems) {
-	// 	apiFetch({
-	// 		path: addQueryArgs(
-	// 			`/wp/v2/portfolio?orderby=${orderby}&order=${order}&portfolio_category=${
-	// 				selectedCategory ? parseInt(selectedCategory) : ""
-	// 			}&per_page=${perPage}`
-	// 		)
-	// 	})
-	// 		.then(res => {
-	// 			setApi(res);
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err);
-	// 		});
-	// }
-	// setAttributes({ portfolioItems: api });
-	let displayFields, filters, mdClass;
+	setAttributes({
+		portfolioItems: getPosts
+	});
 
-	switch (inRow) {
-		case "2":
-			mdClass = " col-md-6";
+	let displayFields, filters, mdClass, xsClass;
+
+	switch (mobileView) {
+		case "1":
+			xsClass = "col-xs-12";
 			break;
-		case "3":
-			mdClass = " col-md-4";
-		case "4":
-			mdClass = " col-md-3";
-		case "6":
-			mdClass = " col-md-2";
+		case "2":
+			xsClass = "col-xs-6";
 		default:
-			mdClass = " col-md-4";
 			break;
 	}
 
-	console.log(attributes);
-	// console.log(api);
-	if (inRow != "6" || inRow != "4") {
-		if (portfolioItems) {
-			displayFields = portfolioItems.map(item => {
-				return (
-					<div
-						className={`projects-item ${item.portfolio_categories.map(cat => {
-							return cat.slug;
-						})} ${mdClass}`}
-					>
-						<div className="projects-item-wrap">
-							<ImageMedia imageId={item.featured_media} />
-							<div className="project-hover-bg"></div>
-							<div className="project-hover">
-								<h3 className="project-title text-uppercase">
-									{item.title.rendered}
-								</h3>
-								<p
-									className="project-desc"
-									dangerouslySetInnerHTML={{
-										__html: item.content.rendered.slice(1, 150) + "..."
-									}}
-								/>
-								<a
-									href={item.link}
-									rel="noopener noreferrer"
-									target="_blank"
-									className="btn btn-md"
-								>
-									Read More
-								</a>
-							</div>
+	// switch (inRow) {
+	// 	case "2":
+	// 		mdClass = "col-md-6";
+	// 		break;
+	// 	case "3":
+	// 		mdClass = "col-md-4";
+	// 	case "4":
+	// 		mdClass = "col-md-3";
+	// 	case "6":
+	// 		mdClass = "col-md-2";
+	// 	default:
+	// 		mdClass = "col-md-4";
+	// 		break;
+	// }
+
+	if (filter == "on") {
+		if (!portfolioCategories) {
+			filters = <ul className="filter"></ul>;
+		} else {
+			filters = (
+				<ul className="filter">
+					{portfolioCategories.map(cat => {
+						return (
+							<li style={{ height: 57 }}>
+								{" "}
+								<button data-filter={cat.slug}>{cat.name}</button>{" "}
+							</li>
+						);
+					})}
+				</ul>
+			);
+		}
+	}
+
+	if (portfolioItems) {
+		displayFields = portfolioItems.map(item => {
+			return inRow == "col-md-6" || inRow == "col-md-4" ? (
+				<div
+					className={`projects-item ${item.portfolio_categories.map(cat => {
+						return cat.slug;
+					})} ${inRow} ${xsClass}`}
+				>
+					<div className="projects-item-wrap">
+						<ImageMedia imageId={item.featured_media} />
+
+						<div
+							className="project-hover-bg"
+							style={itemBgColor ? { backgroundColor: itemBgColor } : {}}
+						></div>
+						<div className="project-hover">
+							<h3
+								className="project-title text-uppercase"
+								style={itemTitleColor ? { color: itemTitleColor } : {}}
+							>
+								{item.title.rendered}
+							</h3>
+							<p
+								style={itemTextColor ? { color: itemTextColor } : {}}
+								className="project-desc"
+								dangerouslySetInnerHTML={{
+									__html: item.content.rendered.slice(1, 150) + "..."
+								}}
+							/>
+							<a
+								href={item.link}
+								rel="noopener noreferrer"
+								target="_blank"
+								className="btn btn-md"
+							>
+								Read More
+							</a>
 						</div>
 					</div>
-				);
-			});
-		}
-	} else {
+				</div>
+			) : (
+				<div
+					className={`projects-item ${item.portfolio_categories.map(cat => {
+						return cat.slug;
+					})} ${inRow} ${xsClass}`}
+				>
+					<div className="projects-item-wrap">
+						<ImageMedia imageId={item.featured_media} />
+
+						<a
+							href={item.link}
+							rel="noopener noreferrer"
+							target="_blank"
+							className="project-hover-small"
+						>
+							<i className="fa fa-link" />
+						</a>
+					</div>
+				</div>
+			);
+		});
 	}
 
 	return (
 		<Fragment>
 			<Inspector {...props} />
-			{displayFields}
+			<div className="projects">
+				{filters}
+				<div className="row projects-content">{displayFields}</div>
+			</div>
 		</Fragment>
 	);
 }
+export default withSelect((select, props) => {
+	const query = {
+		per_page: -1
+	};
+	return {
+		getPosts: select("core").getEntityRecords("postType", "portfolio", query)
+	};
+})(edit);

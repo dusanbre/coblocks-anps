@@ -7,11 +7,12 @@
 			"default": "-1"
 		},
 		"selectedCategory": {
-			"type": "number"
+			"type": "number",
+			"default": ""
 		},
 		"inRow": {
 			"type": "string",
-			"default": "3"
+			"default": "col-md-4"
 		},
 		"portfolioCategories": {
 			"type": "array",
