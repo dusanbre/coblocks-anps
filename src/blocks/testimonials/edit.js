@@ -80,7 +80,13 @@ function edit(props) {
 					<h3 className="title">{attributes.title ? attributes.title : ""}</h3>
 				</div>
 				<div className="testimonials-outer-wrap">
-					<ul className="testimonial-wrap owl-carusel owl-loaded owl-drag">
+					<ul
+						className="testimonial-wrap owl-carousel owl-loaded owl-drag"
+						data-autoplay={
+							attributes.autoplay == true ? attributes.autoplayTimeout : ""
+						}
+						data-random={attributes.random == true ? "random" : ""}
+					>
 						{owlItem}
 					</ul>
 					<div className="owl-nav">
@@ -101,7 +107,13 @@ function edit(props) {
 					<h3 className="title">{attributes.title ? attributes.title : ""}</h3>
 				</div>
 				<div className="testimonials-outer-wrap">
-					<ul className="testimonial-wrap owl-carusel owl-loaded owl-drag">
+					<ul
+						className="testimonial-wrap owl-carousel owl-loaded owl-drag"
+						data-autoplay={
+							attributes.autoplay == true ? attributes.autoplayTimeout : ""
+						}
+						data-random={attributes.random == true ? "random" : ""}
+					>
 						{owlItem}
 					</ul>
 					<div className="owl-nav-style-2">
