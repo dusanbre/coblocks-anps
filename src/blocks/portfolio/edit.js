@@ -37,7 +37,7 @@ function edit(props) {
 		portfolioItems: getPosts
 	});
 
-	let displayFields, filters, mdClass, xsClass;
+	let displayFields, filters, xsClass;
 
 	switch (mobileView) {
 		case "1":
@@ -94,7 +94,7 @@ function edit(props) {
 								style={itemTextColor ? { color: itemTextColor } : {}}
 								className="project-desc"
 								dangerouslySetInnerHTML={{
-									__html: item.content.rendered.slice(1, 150) + "..."
+									__html: item.excerpt.rendered + "..."
 								}}
 							/>
 							<a

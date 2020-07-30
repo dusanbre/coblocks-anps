@@ -1,0 +1,30 @@
+{
+	"name": "anpsblocks/testimonials",
+	"category": "anps",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
+			"type": "string",
+			"default": "style-1"
+		},
+		"random": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplayTimeout": {
+			"type": "string",
+			"default": "6000"
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"testimonial": {
+			"type": "array",
+			"default": []
+		}
+	}
+}

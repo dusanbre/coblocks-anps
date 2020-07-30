@@ -53,7 +53,8 @@ function edit(props) {
 		displayFields = portfolioItems.map(item => {
 			return (
 				<div
-					className={`projects-item col-xs-6 ${inRow} ${portfolioCategories.map(
+					item-type={inRow}
+					className={`projects-item anps__recent-portfolio-editor col-xs-6 ${inRow} ${portfolioCategories.map(
 						cat => {
 							return cat.slug;
 						}
@@ -75,7 +76,7 @@ function edit(props) {
 							<p
 								style={itemTextColor ? { color: itemTextColor } : {}}
 								dangerouslySetInnerHTML={{
-									__html: item.content.rendered.slice(1, 150) + "..."
+									__html: item.excerpt.rendered + "..."
 								}}
 							/>
 							<a
@@ -119,6 +120,14 @@ function edit(props) {
 					</ul>
 				</div>
 				<div className="projects-content row">{displayFields}</div>
+				<div className="projects-pagination">
+					<button className="prev">
+						<i className="fa fa-angle-left"></i>
+					</button>
+					<button className="next">
+						<i className="fa fa-angle-right"></i>
+					</button>
+				</div>
 			</div>
 		</Fragment>
 	);
