@@ -1,7 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import {
 	Button,
-	IconButton,
 	PanelBody,
 	TextControl,
 	SelectControl,
@@ -13,8 +12,6 @@ import {
 	MediaUpload,
 	MediaUploadCheck
 } from "@wordpress/editor";
-import { Fragment } from "@wordpress/element";
-import { parseWithAttributeSchema } from "@wordpress/blocks";
 
 import iconData from "../../utils/icons/icons.json";
 
