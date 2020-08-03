@@ -1,0 +1,10 @@
+{
+	"name": "anpsblocks/galery-slider",
+	"category": "anps",
+	"attributes": {
+		"media": {
+			"type": "array",
+			"default": []
+		}
+	}
+}

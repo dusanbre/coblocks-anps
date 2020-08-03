@@ -99,6 +99,7 @@ export default function inspector(props) {
 						onChange={value => setAttributes({ inRow: value })}
 						value={attributes.inRow}
 					/>
+
 					<SelectControl
 						label={__("Style")}
 						help={__("Select logos style")}

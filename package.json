@@ -6,11 +6,8 @@
 	"tested_up_to": "5.4",
 	"author": "AnpsThemes",
 	"license": "GPL-2.0",
-	"repository": "godaddy-wordpress/coblocks",
+	"repository": "dusanbre/coblocks-anps",
 	"homepage": "https://anpsthemes.com/",
-	"bugs": {
-		"url": "https://github.com/godaddy-wordpress/coblocks/issues"
-	},
 	"scripts": {
 		"setup": "composer install && yarn install && yarn run build && wp-scripts env install",
 		"start": "wp-scripts start --config .dev/config/webpack.config.js --progress",
@@ -119,7 +116,6 @@
 		"style-loader": "^0.19.1",
 		"webpack-fix-style-only-entries": "^0.4.0"
 	},
-
 	"lint-staged": {
 		"*.js": [
 			"jest --config .dev/tests/jest/jest.config.js --silent --findRelatedTests"

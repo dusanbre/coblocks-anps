@@ -3,8 +3,7 @@ import {
 	TextControl,
 	SelectControl,
 	PanelBody,
-	CheckboxControl,
-	Spinner
+	CheckboxControl
 } from "@wordpress/components";
 import { Fragment } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";

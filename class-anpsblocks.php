@@ -5,7 +5,7 @@
  * Description: Anps gutenberg blocks plugin
  * Author: AnpsThemes
  * Author URI: https://www.anpsthemes.com
- * Version: 3.0.0
+ * Version: 1.0.0
  * Text Domain: anps
  * Domain Path: /languages
  * Tested up to: 5.4
