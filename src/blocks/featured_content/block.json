@@ -1,0 +1,59 @@
+{
+	"name": "anpsblocks/featured-content",
+	"category": "anps",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"imageU": {
+			"type": "object"
+		},
+		"link": {
+			"type": "string",
+			"default": ""
+		},
+		"linkTarget": {
+			"type": "string",
+			"default": "_self"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Read More"
+		},
+		"video": {
+			"type": "string",
+			"default": ""
+		},
+		"content": {
+			"type": "string",
+			"default": ""
+		},
+		"absoluteImg": {
+			"type": "boolean",
+			"default": false
+		},
+		"exposed": {
+			"type": "boolean",
+			"default": false
+		},
+		"lightbox": {
+			"type": "boolean",
+			"default": false
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"iconCustom": {
+			"type": "object"
+		},
+		"iconCustomHover": {
+			"type": "object"
+		},
+		"style": {
+			"type": "string",
+			"default": ""
+		}
+	}
+}
