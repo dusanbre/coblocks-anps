@@ -42,6 +42,7 @@ export default function edit(props) {
 				)}
 			</div>
 		);
+		hasIcon = " featured-has-icon";
 	}
 
 	if (attributes.video != "" && attributes.lightbox != false) {
