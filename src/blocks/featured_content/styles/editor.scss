@@ -1,1 +1,5 @@
-
+.featured-title {
+	&:before {
+		background-color: green;
+	}
+}

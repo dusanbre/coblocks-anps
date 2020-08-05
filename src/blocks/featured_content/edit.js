@@ -8,15 +8,15 @@ export default function edit(props) {
 
 	let icon,
 		customIcon,
-		customHover,
 		hasIcon,
 		mediaClass,
 		largeClass,
 		hasLink,
 		pushToTop,
 		hasContent,
-		displayFields,
-		yt;
+		yt,
+		styleClass,
+		videoIcon;
 	if (attributes.icon) {
 		icon = <i className={`fa ${attributes.icon}`}></i>;
 		hasIcon = " featured-has-icon";
@@ -83,40 +83,59 @@ export default function edit(props) {
 		console.log(yt);
 	}
 
-	if (attributes.style == "") {
-		displayFields = (
-			<div
-				className={`featured ${hasIcon}${mediaClass}${largeClass}${hasLink}${hasContent}${pushToTop}`}
+	if (attributes.style != "") {
+		styleClass = " simple-style";
+	} else {
+		styleClass = "";
+	}
+
+	if (attributes.imageU && attributes.lightbox == true) {
+		videoIcon = (
+			<a
+				data-rel="youtube"
+				href={attributes.video}
+				className="featured-lightbox-link"
 			>
-				<div className="featured-header">
-					<a href={attributes.link} target={attributes.linkTarget}>
-						<img
-							src={attributes.imageU ? attributes.imageU.sizes.full.url : yt}
-							alt=""
-						/>
-					</a>
-				</div>
-				<div className="featured-content">
-					<h3 className="featured-title text-uppercase">
-						<a href={attributes.link} target={attributes.linkTarget}>
-							{attributes.iconCustom ? customIcon : icon}
-							{attributes.title}
-						</a>
-					</h3>
-					<p className="featured-desc">
-						{attributes.content ? attributes.content : ""}
-					</p>
-					<a
-						href={attributes.link}
-						target={attributes.linkTarget}
-						className="btn btn-md btn-minimal"
-					>
-						{attributes.buttonText}
-					</a>
-				</div>
-			</div>
+				<svg>
+					<use xlinkHref="#featured-video-dark" />
+				</svg>
+			</a>
 		);
 	}
+
+	const displayFields = (
+		<div
+			className={`featured ${hasIcon}${mediaClass}${largeClass}${hasLink}${hasContent}${pushToTop}${styleClass}`}
+		>
+			<div className="featured-header">
+				<a href={attributes.link} target={attributes.linkTarget}>
+					<img
+						src={attributes.imageU ? attributes.imageU.sizes.full.url : yt}
+						alt=""
+					/>
+				</a>
+			</div>
+			<div className="featured-content">
+				<h3 className="featured-title text-uppercase">
+					<a href={attributes.link} target={attributes.linkTarget}>
+						{attributes.iconCustom ? customIcon : icon}
+						{attributes.title}
+					</a>
+				</h3>
+				<p className="featured-desc">
+					{attributes.content ? attributes.content : ""}
+				</p>
+				<a
+					href={attributes.link}
+					target={attributes.linkTarget}
+					className="btn btn-md btn-minimal"
+				>
+					{attributes.buttonText}
+				</a>
+				{videoIcon}
+			</div>
+		</div>
+	);
 
 	return (
 		<Fragment>
