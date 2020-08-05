@@ -1,0 +1,32 @@
+{
+	"name": "anpsblocks/download",
+	"category": "anps",
+	"attributes": {
+		"content": {
+			"type": "string"
+		},
+		"iconC": {
+			"type": "string"
+		},
+		"iconD": {
+			"type": "string"
+		},
+		"colorText": {
+			"type": "string"
+		},
+		"url": {
+			"type": "string"
+		},
+		"video": {
+			"type": "string",
+			"default": ""
+		},
+		"target": {
+			"type": "string",
+			"default": "_self"
+		},
+		"downloadText": {
+			"type": "string"
+		}
+	}
+}
