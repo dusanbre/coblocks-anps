@@ -1,0 +1,15 @@
+{
+	"name": "anpsblocks/error-404",
+	"category": "anps",
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"subtitle": {
+			"type": "string"
+		},
+		"image": {
+			"type": "object"
+		}
+	}
+}

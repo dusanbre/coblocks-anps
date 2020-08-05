@@ -50,6 +50,7 @@ import * as recentPortfolio from "./blocks/recent_portfolio";
 import * as testimonials from "./blocks/testimonials";
 import * as galerySlider from "./blocks/galery_slider";
 import * as featuredContent from "./blocks/featured_content";
+import * as error404 from "./blocks/404";
 
 /**
  * Function to register an individual block.
@@ -101,7 +102,8 @@ export const registerCoBlocksBlocks = () => {
 		recentPortfolio,
 		testimonials,
 		galerySlider,
-		featuredContent
+		featuredContent,
+		error404
 	].forEach(registerBlock);
 };
 
