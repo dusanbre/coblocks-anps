@@ -17,10 +17,6 @@
 		"url": {
 			"type": "string"
 		},
-		"video": {
-			"type": "string",
-			"default": ""
-		},
 		"target": {
 			"type": "string",
 			"default": "_self"
